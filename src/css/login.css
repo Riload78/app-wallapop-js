@@ -1,0 +1,33 @@
+.login{
+    @apply bg-gray-700;
+}
+
+.login p{
+    @apply text-gray-100;
+}
+
+.login a{
+    @apply text-blue-400 hover:text-white hover:underline;
+}
+
+.login-content{
+    @apply flex flex-col justify-center items-center h-screen;
+}
+
+.login-wrapper{
+    @apply flex flex-col max-w-md mx-auto  p-6 rounded-md sm:p-10 bg-gray-900 text-gray-100;
+}
+
+.login-title{
+    @apply mb-8 text-center text-gray-100;
+}
+
+.login-title .h1{
+    @apply text-gray-100;
+}
+
+
+
+.login-input{
+    @apply w-full px-3 py-2 border rounded-md border-gray-700 bg-gray-900 text-gray-100
+}

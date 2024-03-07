@@ -1,0 +1,7 @@
+.header-content{
+    @apply bg-gradient-to-r from-cyan-500 to-gray-900 shadow-sm shadow-teal-600;
+}
+
+.header-wrapper {
+    @apply flex justify-between items-center px-8 py-4;
+}

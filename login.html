@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Iniciar Sesion</title>
+        <link rel="stylesheet" href="./src/css/output.css">
+    </head>
+    <body class="login">
+        <div class="content">
+            <div class="login-content">
+                <div class="logo-wrapper">
+                    <a href="./index.html">
+                        <img src="./src/images/logo-codepop.svg" alt="" srcset="">
+                    </a>
+                </div>
+                <div class="login-wrapper">
+                    <div class="login-title">
+                        <h1 class="h1">Iniciar Sesión</h1>
+                    </div>
+                    <form novalidate action class="space-y-12">
+                        <div class="space-y-4">
+                            <div>
+                                <label for="email" class="block mb-2 text-sm">Email
+                                    address</label>
+                                <input type="email" name="email" id="email"
+                                    placeholder="leroy@jenkins.com"
+                                    class="login-input">
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <label for="password"
+                                        class="text-sm">Password</label>
+                                </div>
+                                <input type="password" name="password" id="password"
+                                    placeholder="*****"
+                                    class="login-input">
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <div>
+                                <button type="button" class="btn-primary">Acceder</button>
+                            </div>
+                            <p
+                                class="px-6 text-sm text-center">¿No tienes una cuenta?
+                                <a rel="noopener noreferrer" href="./register.html">Regístrate aquí</a>.
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
