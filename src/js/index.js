@@ -1,5 +1,5 @@
-import { adController } from "./controllers/adController.js";
+import { productController } from "./product/productController.js";
 
-const adsListWrapper = document.querySelector('.list-wrapper')
+const productListWrapper = document.querySelector('.list-wrapper')
 
-adController(adsListWrapper)
+productController(productListWrapper)
