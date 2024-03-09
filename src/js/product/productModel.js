@@ -1,4 +1,4 @@
-const url = 'http://127.0.0.1:8000/api/products';
+const url = 'http://127.0.0.1:8000/api/productss';
 
 export async function getProducts () {
     try {
