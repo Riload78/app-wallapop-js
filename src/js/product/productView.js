@@ -1,13 +1,13 @@
-import { ENV } from "../config/env.js";
+
 
 export function buildProduct (product) {
     return `
-        <a href="${ENV.apiBaseUrl}${product.id}">
-            <img class="list-image" src="${ENV.mediaUrl}${product.image}" alt="">
+        <a href="${product.link}">
+            <img class="list-image" src="${product.image}" alt="">
         </a>
         <div class="list-info">
             <div class="space-y-2">
-                <a href="${ENV.appBaseUrl}product/${product.id}">
+                <a href="${product.link}">
                     <h2 class="h2">${product.name}</h2>
                     <p class="text-gray-100">${product.description}</p>
                 </a>
@@ -33,6 +33,19 @@ export function buildMessage (message) {
             </span>
             <div class="text-wrapper">
                 ${message}
+            </div>
+        </div>
+    `
+}
+
+export function buildSkeleton () {
+    return `
+        <div class="skeleton flex flex-col m-8 rounded shadow-md w-60 sm:w-80 animate-pulse h-96">
+            <div class="h-48 rounded-t dark:bg-gray-700"></div>
+            <div class="flex-1 px-4 py-8 space-y-4 sm:p-8 dark:bg-gray-900">
+                <div class="w-full h-6 rounded dark:bg-gray-700"></div>
+                <div class="w-full h-6 rounded dark:bg-gray-700"></div>
+                <div class="w-3/4 h-6 rounded dark:bg-gray-700"></div>
             </div>
         </div>
     `

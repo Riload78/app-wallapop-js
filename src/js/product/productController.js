@@ -1,12 +1,21 @@
 import { getProducts } from "./productModel.js";
-import { buildProduct, buildMessage } from "./productView.js";
+import { buildProduct, buildMessage, buildSkeleton } from "./productView.js";
 
 
 export const productController = async (productsListWrapper) => {
+
     try {
         const productContent = renderProductContent(productsListWrapper);
         const products = await getProducts();
-        products.length > 0 ? renderProduct(productContent, products) : renderMessage(productsListWrapper);        
+        if (products.length > 0) {
+            renderSkeleton(productsListWrapper, products);
+            renderProduct(productContent, products);
+            // Asegúrate de agregar los elementos antes de despachar el evento
+            productsListWrapper.appendChild(productContent);
+            
+        } else {
+            renderMessage(productsListWrapper);        
+} 
         
     } catch (error) {
         console.log(error);
@@ -18,7 +27,8 @@ export const productController = async (productsListWrapper) => {
 function renderProductContent(productsListWrapper) {
     const productContent = document.createElement('div');
     productContent.classList.add('list-content');
-    productsListWrapper.appendChild(productContent)
+    const renderContent = productsListWrapper.appendChild(productContent)
+return renderContent
 }
 
 function renderProduct(productContent, products) {
@@ -38,4 +48,15 @@ function renderMessage (productsListWrapper) {
 
     productsListWrapper.innerHTML = buildMessage(message);
 
+}
+
+function renderSkeleton(productContent, products) {
+    const skeletonContent = document.createElement('div');
+    skeletonContent.classList.add('skeleton-content', 'hidden')
+    productContent.appendChild(skeletonContent)
+    let skeletons = ''
+    products.forEach(product => {
+        skeletons +=  buildSkeleton()
+    });
+    skeletonContent.innerHTML = skeletons
 }

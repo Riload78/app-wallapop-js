@@ -1,12 +1,29 @@
-const url = 'http://127.0.0.1:8000/api/productss';
+import { ENV } from "../config/env.js";
+import { formatPrice } from "../helper/formatPrice.js";
 
-export async function getProducts () {
+const url = `${ENV.apiBaseUrl}/products`;
+
+export async function getProducts() {
     try {
         const response = await fetch(url)
         const data = await response.json()
-        return data
-        
+        const result = parseData(data)
+        return result
+
     } catch (error) {
         throw new Error(error)
     }
+}
+
+function parseData(data) {
+    return data.map(product => ({
+        id: product.id,
+        name: product.name,
+        description: product.description,
+        price: formatPrice(product.price),
+        state: product.state,
+        category: product.category,
+        image: ENV.mediaUrl + product.image,
+        link: ENV.appBaseUrl + "product/" + product.id
+    }))
 }
