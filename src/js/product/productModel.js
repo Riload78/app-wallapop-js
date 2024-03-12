@@ -11,7 +11,8 @@ export async function getProducts() {
         return result
 
     } catch (error) {
-        throw new Error(error)
+        console.log(error);
+        throw new Error(`Error en la petición de datos. ${error}`);
     }
 }
 

@@ -1,5 +1,5 @@
 body{
-    @apply bg-gray-100
+    @apply bg-gray-100;
 }
 .h1 {
     @apply text-4xl font-bold text-gray-700;
@@ -18,3 +18,4 @@ body{
 body .btn-primary{
     @apply w-full px-8 py-3 font-semibold rounded-md bg-sky-400 text-gray-900 hover:bg-sky-600 transition ease-in-out;
 }
+

@@ -9,12 +9,14 @@ module.exports = {
     extend: {
       colors: {
         sky: {
-          400: '#38bdf8', // Reemplaza 'xxxxxx' con el código hexadecimal de tu color
+          400: '#38bdf8',
         },
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
 }
 
 

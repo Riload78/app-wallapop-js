@@ -11,11 +11,11 @@
 }
 
 .login-content{
-    @apply flex flex-col justify-center items-center h-screen;
+    @apply flex flex-col justify-center py-60 items-center h-screen;
 }
 
 .login-wrapper{
-    @apply flex flex-col max-w-md mx-auto  p-6 rounded-md sm:p-10 bg-gray-900 text-gray-100;
+    @apply flex flex-col max-w-md mx-auto p-6 rounded-md sm:p-10 bg-gray-900 text-gray-100;
 }
 
 .login-title{
@@ -28,6 +28,8 @@
 
 
 
+
+
 .login-input{
-    @apply w-full px-3 py-2 border rounded-md border-gray-700 bg-gray-900 text-gray-100
+    @apply form-input w-full px-3 py-2 border rounded-md border-gray-700 bg-gray-900 text-gray-900
 }

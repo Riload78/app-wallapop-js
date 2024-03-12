@@ -15,10 +15,11 @@ export const productController = async (productsListWrapper) => {
             
         } else {
             renderMessage(productsListWrapper);        
-} 
+        } 
         
     } catch (error) {
         console.log(error);
+        dispatchEventError(error, productsListWrapper)
     }
 
 }
@@ -59,4 +60,16 @@ function renderSkeleton(productContent, products) {
         skeletons +=  buildSkeleton()
     });
     skeletonContent.innerHTML = skeletons
+}
+
+
+function dispatchEventError(error, productsListWrapper) {
+    const event = new CustomEvent('error-loading-products', {
+        detail: {
+            message: error,
+            type: 'error'
+        } 
+    });
+
+    productsListWrapper.dispatchEvent(event)
 }

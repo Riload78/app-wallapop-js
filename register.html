@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Iniciar Sesion</title>
+        <link rel="stylesheet" href="./src/css/output.css">
+    </head>
+    <body class="login">
+        <div class="content">
+            <div class="login-content">
+                <div class="logo-wrapper">
+                    <a href="./index.html">
+                        <img src="./src/images/logo-codepop.svg" alt="" srcset="">
+                    </a>
+                </div>
+                <div class="login-wrapper">
+                    <div class="login-title">
+                        <h1 class="h1">Registro</h1>
+                    </div>
+                    <form id="register-form" class="space-y-12">
+                        <div class="space-y-4">
+                            <div>
+                                <label for="email" class="block mb-2 text-sm">Email</label>
+                                <input type="text" name="email" id="email"
+                                    placeholder="leroy@jenkins.com"
+                                    class="login-input"
+                                    required>
+                                     <p class="mt-2 text-sm text-green-600 dark:text-green-500"><span class="font-medium">Well done!</span> Some success message.</p>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <label for="password"
+                                        class="text-sm">Password</label>
+                                </div>
+                                <input type="password" name="password" id="password"
+                                    placeholder="*****"
+                                    class="login-input"
+                                    required>
+                            </div>
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <label for="password"
+                                        class="text-sm">Password</label>
+                                </div>
+                                <input type="password" name="confirm-password" id="confirm-password"
+                                    placeholder="*****"
+                                    class="login-input"
+                                    required>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <div>
+                                <button type="submit" class="btn-primary">Enviar</button>
+                            </div>
+                           
+                        </div>
+                        <div class="notification-wrapper"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script type="module" src="./src/js/register.js"></script>
+    </body>
+</html>

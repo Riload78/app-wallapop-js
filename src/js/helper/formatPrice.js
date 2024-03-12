@@ -13,3 +13,8 @@ function getCurrencyCode(language){
     }
     return currencies[language] || 'EUR'
 }
+
+/**
+ * LLamar a una api para conversion de rate
+ */
+
