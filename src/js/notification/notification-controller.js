@@ -7,9 +7,9 @@ export function notificationControler(notificationWrapper) {
         notification.innerHTML = builtNotification(message)
         notificationWrapper.appendChild(notification);
         
-        // setTimeout(() => { 
-        //     notification.remove()  
-        // }, 3000);
+        setTimeout(() => { 
+            notification.remove()  
+        }, 3000);
     }
 
     return { showNotification }
