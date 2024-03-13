@@ -10,10 +10,8 @@ export async function createUser (email, password) {
         body: JSON.stringify({ username: email, password: password })
     }
     const response = await fetch(url, options)
-
-    console.log(response);
+    
     if (!response.ok) {
         throw new Error(`Error al crear el usuario. ${response.statusText}`)
     }
-    
 }

@@ -33,8 +33,6 @@ export function registerController (registerForm) {
             showErrors(errors)
         }
     }
-
-
     
     function isEmailValidate() {
         const validateEmail = new RegExp(/^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gim)

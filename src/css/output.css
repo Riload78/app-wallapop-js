@@ -384,53 +384,7 @@ body .btn-primary:hover{
   text-decoration-line: underline;
 }
 
-.message{
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  display: flex;
-  flex-direction: row;
-  gap: 0.5rem;
-  overflow: hidden;
-  border-radius: 0.5rem;
-  border-width: 1px;
-  --tw-border-opacity: 1;
-  border-color: rgb(55 65 81 / var(--tw-border-opacity));
-  --tw-bg-opacity: 1;
-  background-color: rgb(17 24 39 / var(--tw-bg-opacity));
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  padding-left: 1rem;
-  --tw-text-opacity: 1;
-  color: rgb(243 244 246 / var(--tw-text-opacity));
-  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
-.message .icon-wrapper{
-  margin-left: 0.75rem;
-  margin-right: 0.75rem;
-  display: flex;
-  justify-content: center;
-  border-radius: 9999px;
-}
-
-.message .text-wrapper{
-  flex: 1 1 0%;
-  padding: 0.5rem;
-}
-
-.message svg{
-  height: 2rem;
-  width: 2rem;
-  fill: #38bdf8;
-  stroke-width: 2;
-}
-
-.message .text-wrapper{
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-}
+/* @import url('../js/notification/message.css'); */
 
 .create-content{
   display: flex;
@@ -575,9 +529,7 @@ body .btn-primary:hover{
   color: rgb(34 197 94 / var(--tw-text-opacity));
 }
 
-/*
-! tailwindcss v3.4.1 | MIT License | https://tailwindcss.com
-*/
+/* ! tailwindcss v3.4.1 | MIT License | https://tailwindcss.com */
 
 /*
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
@@ -1715,6 +1667,10 @@ select{
   height: 6rem;
 }
 
+.h-28{
+  height: 7rem;
+}
+
 .h-3{
   height: 0.75rem;
 }
@@ -1729,6 +1685,10 @@ select{
 
 .h-5{
   height: 1.25rem;
+}
+
+.h-56{
+  height: 14rem;
 }
 
 .h-6{
@@ -1751,6 +1711,10 @@ select{
   height: 100vh;
 }
 
+.w-28{
+  width: 7rem;
+}
+
 .w-3{
   width: 0.75rem;
 }
@@ -1765,6 +1729,10 @@ select{
 
 .w-5{
   width: 1.25rem;
+}
+
+.w-56{
+  width: 14rem;
 }
 
 .w-6{
@@ -1874,6 +1842,17 @@ select{
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
+@keyframes ping{
+  75%, 100%{
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.animate-ping{
+  animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
 @keyframes pulse{
   50%{
     opacity: .5;
@@ -1882,6 +1861,16 @@ select{
 
 .animate-pulse{
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes spin{
+  to{
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin{
+  animation: spin 1s linear infinite;
 }
 
 .resize{
@@ -2040,6 +2029,10 @@ select{
   border-width: 2px;
 }
 
+.border-8{
+  border-width: 8px;
+}
+
 .border-b-2{
   border-bottom-width: 2px;
 }
@@ -2086,6 +2079,16 @@ select{
   border-color: rgb(167 139 250 / var(--tw-border-opacity));
 }
 
+.border-t-blue-400{
+  --tw-border-opacity: 1;
+  border-top-color: rgb(96 165 250 / var(--tw-border-opacity));
+}
+
+.bg-blue-200{
+  --tw-bg-opacity: 1;
+  background-color: rgb(191 219 254 / var(--tw-bg-opacity));
+}
+
 .bg-blue-500{
   --tw-bg-opacity: 1;
   background-color: rgb(59 130 246 / var(--tw-bg-opacity));
@@ -2099,6 +2102,11 @@ select{
 .bg-blue-700{
   --tw-bg-opacity: 1;
   background-color: rgb(29 78 216 / var(--tw-bg-opacity));
+}
+
+.bg-blue-900{
+  --tw-bg-opacity: 1;
+  background-color: rgb(30 58 138 / var(--tw-bg-opacity));
 }
 
 .bg-gray-100{
@@ -2411,9 +2419,18 @@ select{
   font-weight: 600;
 }
 
+.leading-none{
+  line-height: 1;
+}
+
 .text-black{
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+.text-blue-200{
+  --tw-text-opacity: 1;
+  color: rgb(191 219 254 / var(--tw-text-opacity));
 }
 
 .text-blue-400{
@@ -2429,6 +2446,11 @@ select{
 .text-blue-600{
   --tw-text-opacity: 1;
   color: rgb(37 99 235 / var(--tw-text-opacity));
+}
+
+.text-blue-800{
+  --tw-text-opacity: 1;
+  color: rgb(30 64 175 / var(--tw-text-opacity));
 }
 
 .text-gray-100{
