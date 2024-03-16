@@ -1,5 +1,5 @@
 import { notificationControler } from "./notification/notification-controller.js";
-import { productController } from "./product/productController.js";
+import { productController } from "./product/list/productController.js";
 import { loaderController } from "./loader/loader-controller.js";
 import { sessionController } from "./session/session-controller.js";
 

@@ -1,6 +1,6 @@
 import { getProducts } from "./productModel.js";
 import { buildProduct, buildMessage, buildSkeleton } from "./productView.js";
-import { dispatchEvent } from "../helper/dispatchEvent.js";
+import { dispatchEvent } from "../../helper/dispatchEvent.js";
 
 
 export const productController = async (productsListWrapper) => {
