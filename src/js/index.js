@@ -1,10 +1,12 @@
 import { notificationControler } from "./notification/notification-controller.js";
 import { productController } from "./product/productController.js";
 import { loaderController } from "./loader/loader-controller.js";
+import { sessionController } from "./session/session-controller.js";
 
 const productListWrapper = document.querySelector('.list-wrapper')
 const notificationWrapper = document.querySelector('.notification-wrapper')
 const loaderWrapper = document.querySelector('.loader-wrapper')
+const sessionWapper = document.querySelector('.nav-wrapper')
 
 
 const { showNotification } = notificationControler(notificationWrapper)
@@ -23,3 +25,4 @@ productListWrapper.addEventListener('loader', (event) => {
 })
 
 productController(productListWrapper)
+sessionController(sessionWapper)
