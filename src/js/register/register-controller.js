@@ -9,23 +9,20 @@ export function registerController (registerForm) {
     registerForm.addEventListener('submit', function (event){
         // Evito que el formulario se envíe por defecto
         event.preventDefault();
+        console.log(event);
+
         handlerRegisterSubmit()
+
     })
-
-
-    //recoger los datos del formulario
-    const email = registerForm.querySelector('#email');
-    const password = registerForm.querySelector("#password");
-    const confirmPassword = registerForm.querySelector("#confirm-password");
 
     const handlerRegisterSubmit = () => {
         let errors = []
 
-        if (!isEmailValidate(email)) {
+        if (!isEmailValidate(email.value)) {
             errors.push("El correo no es válido")
         }
 
-        if (!isEqualPassword(password, confirmPassword)) {
+        if (!isEqualPassword(password.value, confirmpassword.value)) {
             errors.push('Las contraseñas no coinciden')
         }
 

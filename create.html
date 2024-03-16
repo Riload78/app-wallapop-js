@@ -21,44 +21,61 @@
 
                     <form id="create-form" class="create-form">
                         <div class="mb-5">
-                            <label for="product-name"
+                            <label for="name"
                                 class="label">Nombre del producto</label>
-                            <input type="text" id="product-name"
+                            <input type="text" id="name"
+                                name="name"
                                 class="input-text"
                                 placeholder="Nombre del producto" required />
                         </div>
                         <div class="mb-5">
-                            <label for="product-description"
+                            <label for="description"
                                 class="label">Descripción</label>
-                            <textarea id=product-description" 
+                            <textarea id=description" 
+                                name="description"
                                 rows="4" class="input-text" 
                                 placeholder="Descripción del producto" 
                                 required></textarea>
                         </div>
                         <div class="mb-5">
-                            <label for="product-price"
+                            <label for="price"
                                 class="label">Precio</label>
-                            <input type="text" id="product-price"
+                            <input type="text" id="price"
+                                name="price"
                                 class="input-text"
                                 placeholder="Precio del producto" required />
                         </div>
                         <div class="mb-5">
-                            <label for="product-price"
+                            <label for="state"
                                 class="label">Tipo de anuncio</label>
-                            <select type="select" id="product-state"
+                            <select type="select" id="state"
                                 class="input-text"
+                                name="state"
                                 placeholder="Precio del producto" required>
                                 <option selected>Seleccione una opción</option>
                                 <option value="compra">Compra</option>
                                 <option value="venta">Venta</option>
                             </select>
                         </div>
-                         <div class="mb-5">
-                            <label for="product-image"
-                                class="label">Imagen del producto</label>
-                            <input type="text" id="product-image"
+                        <div class="mb-5">
+                            <label for="category"
+                                class="label">Categoria</label>
+                            <select type="select" id="category"
                                 class="input-text"
-                                placeholder="nombre-del-fichero.extension" required />
+                                name="category"
+                                placeholder="Categoría" required>
+                                <option selected>Seleccione una opción</option>
+                                <option value="hogar">Hogar</option>
+                                <option value="electronica">Electrónica</option>
+                            </select>
+                        </div>
+                         <div class="mb-5">
+                            <label for="image"
+                                class="label">Imagen del producto</label>
+                            <input type="file" id="image"
+                                name="image"
+                                class="input-text"
+                                placeholder="Añade una imagen" required />
                         </div>
                         <button type="submit" class="btn-primary">Crear anuncio</button>
                     </form>

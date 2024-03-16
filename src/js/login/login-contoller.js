@@ -6,7 +6,7 @@ export const loginController = (loginForm) => {
 
     loginForm.addEventListener('submit', (event) => {
         event.preventDefault();
-        console.log('submit');
+        console.log('submit:', event);
         handlerLoginSubmit()
     })
 

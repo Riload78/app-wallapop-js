@@ -1,8 +1,8 @@
 import { createController } from "./product/create/createController.js";
 
 document.addEventListener( 'DOMContentLoaded', () => {
-    const createWrapper = document.querySelector('#create-form')
+    const createFrom = document.querySelector('#create-form')
 
-    createController(createWrapper)
+    createController(createFrom)
 
 })
