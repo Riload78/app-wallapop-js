@@ -37,7 +37,7 @@ export function registerController (registerForm) {
        
     } 
 
-    function showErrors (errors) {
+    const showErrors = (errors) => {
         errors.forEach(error => {
             dispatchEvent('register-notifcation', {
                 message: error,
@@ -46,10 +46,11 @@ export function registerController (registerForm) {
         })
     }
 
-    async function registerUser () {
+    const registerUser = async () => {
         try {
+            dispatchEvent('loader', { isLoading: true }, registerForm)
             await createUser (email.value, password.value)
-            
+            dispatchEvent('loader', { isLoading: false }, registerForm)
             dispatchEvent('register-notifcation', {
                 message: 'Usuario creado correctamente',
                 type: 'success'

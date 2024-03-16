@@ -27,8 +27,10 @@ export const loginController = (loginForm) => {
     const submitLogin = async () => {
         const { email, password } = getLoginData(loginForm)
         try {
+            dispatchEvent('loader', {isLoading: true}, loginForm)
             const jwt = await loginUser(email, password)
             localStorage.setItem("token", jwt);
+            dispatchEvent('loader', { isLoading: false }, loginForm)
             dispatchEvent('login-notification', {
                 type: 'success',
                 message: 'Usuario logueado correctamente'
@@ -51,9 +53,7 @@ export const loginController = (loginForm) => {
                 type: 'error'
             }, loginForm)
         })
-        
     }
-
 
     const getLoginData = (loginForm) => {
         const formData = new FormData(loginForm);
@@ -65,20 +65,4 @@ export const loginController = (loginForm) => {
             password: password
         }
     }
-
-   
-
-
-
-    // Get the elements we need to manipulate in our code -> ok
-
-    // Submit form -> ok
-
-    // call method at model
-
-    // Integrate modul notification
-
-    // Integrate Loading
-
-
 }
