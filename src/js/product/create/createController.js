@@ -1,5 +1,6 @@
 import { isSizeValidate, isPriceValidate } from "../../helper/validate.js";
 import { createProduct } from "./createModel.js";
+import { dispatchEvent } from "../../helper/dispatchEvent.js";
 
 export const createController = (createForm) => {
     console.log(createForm);
@@ -32,6 +33,15 @@ export const createController = (createForm) => {
             throw new Error(error)
         }
 
+    }
+
+    const showErrors = (errors) => {
+        errors.forEach(error => {
+            dispatchEvent('create-product-validation', {
+                message: error,
+                type: 'error'
+            }, createForm)
+        })
     }
     
     const getCreateData = (createForm) => {
