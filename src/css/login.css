@@ -12,10 +12,14 @@
 
 .login-content{
     @apply flex flex-col justify-center py-60 items-center h-screen;
+    padding: 20px;
 }
 
 .login-wrapper{
-    @apply flex flex-col max-w-md mx-auto p-6 rounded-md sm:p-10 bg-gray-900 text-gray-100;
+    @apply flex flex-col mx-auto p-6 rounded-md sm:p-10 bg-gray-900 text-gray-100;
+    width: 100%;
+    max-width: 600px;
+    
 }
 
 .login-title{

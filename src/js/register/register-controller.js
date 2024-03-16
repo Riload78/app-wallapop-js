@@ -1,5 +1,6 @@
 import { createUser } from "./register-model.js";
 import { dispatchEvent } from "../helper/dispatchEvent.js";
+import { isEmailValidate, isEqualPassword } from "../helper/validate.js";
 
 export function registerController (registerForm) {
     console.log(registerForm);
@@ -17,14 +18,14 @@ export function registerController (registerForm) {
     const password = registerForm.querySelector("#password");
     const confirmPassword = registerForm.querySelector("#confirm-password");
 
-    function handlerRegisterSubmit () {
+    const handlerRegisterSubmit = () => {
         let errors = []
 
-        if (!isEmailValidate()) {
+        if (!isEmailValidate(email)) {
             errors.push("El correo no es válido")
         }
 
-        if(!isEqualPassword()) {
+        if (!isEqualPassword(password, confirmPassword)) {
             errors.push('Las contraseñas no coinciden')
         }
 
@@ -35,15 +36,6 @@ export function registerController (registerForm) {
         } 
        
     } 
-    
-    const isEmailValidate = () => {
-        const validateEmail = new RegExp(/^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gim)
-        return validateEmail.test(email.value)
-    }
-    
-    function isEqualPassword () {
-        return password.value === confirmPassword.value 
-    }
 
     function showErrors (errors) {
         errors.forEach(error => {
@@ -74,13 +66,4 @@ export function registerController (registerForm) {
             }, registerForm)
         }
     }
-
-    
-
-    // Validar los datos del formulario
-
-    // Enviarlos a la Api
-
-    // Responder al usuario
-
 }
