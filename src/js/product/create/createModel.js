@@ -19,8 +19,7 @@ export const createProduct = async (dataForm) => {
     }
     try {
         const response = await fetch(url, options)
-        const data =  await response.json() 
-        return data;
+        if (!response.ok) throw new Error(`Error al crear el producto: ${response.status}`);
         
     } catch (error) {
         throw new Error(error);

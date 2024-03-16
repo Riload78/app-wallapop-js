@@ -27,17 +27,29 @@ export const createController = (createForm) => {
     const sendProduct = async (dataForm) => {
 
         try {
+            dispatchEvent('loader', { isLoading: true }, createForm)
             await createProduct(dataForm)
-            
+            dispatchEvent('loader', { isLoading: false }, createForm)
+            dispatchEvent('create-product-notification', {
+                message: 'Producto creado correctamente',
+                type: 'success'
+            }, createForm)
+            // setTimeout(() => {
+            //     window.location.href = '/'
+            // }, 2500)
         } catch (error) {
-            throw new Error(error)
+            console.log(error);
+            dispatchEvent('create-product-notification', {
+                message: error,
+                type: 'error'
+            }, createForm)
         }
 
     }
 
     const showErrors = (errors) => {
         errors.forEach(error => {
-            dispatchEvent('create-product-validation', {
+            dispatchEvent('create-product-notification', {
                 message: error,
                 type: 'error'
             }, createForm)
