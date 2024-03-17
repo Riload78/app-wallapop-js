@@ -16,7 +16,7 @@ export async function getProducts() {
     }
 }
 
-function parseData(data) {
+const parseData = (data) => {
     return data.map(product => ({
         id: product.id,
         name: product.name,
