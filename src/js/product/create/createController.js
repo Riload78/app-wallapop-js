@@ -27,9 +27,9 @@ export const createController = (createForm) => {
     const sendProduct = async (dataForm) => {
 
         try {
-            dispatchEvent('loader', { isLoading: true }, createForm)
+            dispatchEvent('loader-create-product', { isLoading: true }, createForm)
             await createProduct(dataForm)
-            dispatchEvent('loader', { isLoading: false }, createForm)
+            dispatchEvent('loader-create-product', { isLoading: false }, createForm)
             dispatchEvent('create-product-notification', {
                 message: 'Producto creado correctamente',
                 type: 'success'

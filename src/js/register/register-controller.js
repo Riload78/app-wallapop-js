@@ -4,7 +4,7 @@ import { isEmailValidate, isEqualPassword } from "../helper/validate.js";
 
 export function registerController (registerForm) {
     console.log(registerForm);
-
+    
     // Añado evento  submit del formulario
     registerForm.addEventListener('submit', function (event){
         // Evito que el formulario se envíe por defecto
@@ -63,5 +63,9 @@ export function registerController (registerForm) {
                 type: 'error'
             }, registerForm)
         }
+    }
+
+    const toLogin = () =>{
+       
     }
 }

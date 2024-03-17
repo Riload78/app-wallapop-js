@@ -25,6 +25,6 @@ function parseData(data) {
         state: product.state,
         category: product.category,
         image: ENV.mediaUrl + product.image,
-        link: ENV.appBaseUrl + "product/" + product.id
+        link: `${ENV.appBaseUrl}view.html?id=${product.id}`
     }))
 }
