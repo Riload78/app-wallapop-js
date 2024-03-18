@@ -17,6 +17,57 @@ export const getProduct = async (productId) => {
 
 }
 
+export const getUserData = async (token) => {
+    try {
+        const url = `${ENV.apiUserBaseUrl}me/`
+        const options = {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        }
+        console.log(url, options);
+        const response = await fetch(url, options);
+        const data = await response.json()
+        console.log('getUserData', data);
+        const result = parseUser(data)
+
+        
+        return result
+        
+    } catch (error) {
+        console.log(error);
+        throw new Error(error)
+    }
+}
+
+export const deleteProduct = async (productId, token) => {
+    try {
+        const url = `${ENV.apiProductBaseUrl}products/${productId}`
+        console.log(url);
+        const options = {
+            method: "DELETE",  
+            headers:{
+              'Authorization': `Bearer ${token}` 
+            }
+        }
+        const response = await fetch(url, options)
+        console.log(response);
+        if(!response.ok){
+            throw new Error(error)
+        }
+        const data = {
+            message:  "Successfully deleted product"
+        }
+        return data
+
+
+        
+    } catch (error) {
+        console.log(error);
+        throw new Error(error)
+    }
+}
+
 const parseData = (data) => {
     return data.map(product => ({
         id: product.id,
@@ -30,4 +81,10 @@ const parseData = (data) => {
         userId: product.userId,
         updatedAt: product.updatedAt
     }))
+}
+
+const parseUser = (user) => {
+    return {
+        id: user.id
+    }
 }

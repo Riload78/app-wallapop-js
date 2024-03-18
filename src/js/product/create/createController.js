@@ -34,9 +34,11 @@ export const createController = (createForm) => {
                 message: 'Producto creado correctamente',
                 type: 'success'
             }, createForm)
-            // setTimeout(() => {
-            //     window.location.href = '/'
-            // }, 2500)
+
+            setTimeout(() => {
+                window.location.href = '/'
+            }, 2500)
+            
         } catch (error) {
             console.log(error);
             dispatchEvent('create-product-notification', {

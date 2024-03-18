@@ -27,3 +27,12 @@ export const buildView = (product) => {
     `
 
 }
+
+export const buildToolbar = () => {
+    return `
+        <div id="toolbar">
+            <button id="edit-button"type="button" class="btn-primary">Editar</button>
+            <button id="remove-button" class="btn-secondary">Eliminar</button>
+        </div>
+    `
+}

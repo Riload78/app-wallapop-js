@@ -11,12 +11,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const loaderWrapper = document.querySelector('.loader-wrapper')
 
     const {showNotification} = notificationControler(notificationWrapper)
-    loaderController(loaderWrapper)
-    sessionController(sessionWrapper)
-
+    const {loaderStatus} = loaderController(loaderWrapper)
+    
     // addevenlistener
-
-
+    viewWrapper.addEventListener('loader-view', (event) => {
+        console.log(event);
+        loaderStatus(event.detail.isLoading)
+    })
+    
+    viewWrapper.addEventListener('notification-view', (event) => {
+        showNotification(event.detail.message, event.detail.error)
+    })
+    
+    
+    sessionController(sessionWrapper)
     viewController(viewWrapper)
 
 
