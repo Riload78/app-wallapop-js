@@ -1,6 +1,15 @@
 .login{
     @apply bg-gray-700;
 }
+.login .header-content a{
+    @apply text-gray-900;
+    
+}
+
+.login .header-content a:hover{
+    text-decoration: none;
+    @apply text-gray-900;
+}
 
 .login p{
     @apply text-gray-100;

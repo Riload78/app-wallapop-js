@@ -17,28 +17,28 @@ export const getProduct = async (productId) => {
 
 }
 
-export const getUserData = async (token) => {
-    try {
-        const url = `${ENV.apiUserBaseUrl}me/`
-        const options = {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        }
-        console.log(url, options);
-        const response = await fetch(url, options);
-        const data = await response.json()
-        console.log('getUserData', data);
-        const result = parseUser(data)
+// export const getUserData = async (token) => {
+//     try {
+//         const url = `${ENV.apiUserBaseUrl}me/`
+//         const options = {
+//             headers: {
+//                 'Authorization': `Bearer ${token}`
+//             }
+//         }
+//         console.log(url, options);
+//         const response = await fetch(url, options);
+//         const data = await response.json()
+//         console.log('getUserData', data);
+//         const result = parseUser(data)
 
         
-        return result
+//         return result
         
-    } catch (error) {
-        console.log(error);
-        throw new Error(error)
-    }
-}
+//     } catch (error) {
+//         console.log(error);
+//         throw new Error(error)
+//     }
+// }
 
 export const deleteProduct = async (productId, token) => {
     try {
@@ -68,6 +68,7 @@ export const deleteProduct = async (productId, token) => {
     }
 }
 
+
 const parseData = (data) => {
     return data.map(product => ({
         id: product.id,
@@ -83,8 +84,8 @@ const parseData = (data) => {
     }))
 }
 
-const parseUser = (user) => {
-    return {
-        id: user.id
-    }
-}
+// const parseUser = (user) => {
+//     return {
+//         id: user.id
+//     }
+// }

@@ -1,15 +1,59 @@
 import { isSizeValidate, isPriceValidate } from "../../helper/validate.js";
-import { createProduct } from "./createModel.js";
+import { createProduct, getProduct } from "./createModel.js";
 import { dispatchEvent } from "../../helper/dispatchEvent.js";
 
-export const createController = (createForm) => {
+export const createController = async (createForm, getSessionData) => {
+
+    const url = window.location.search
+    const queryParams = new URLSearchParams(url);
+    const productId = queryParams.get('id')
+    //const token =  localStorage.getItem('token');
+    console.log(productId);
     console.log(createForm);
+    console.log(productId);
+
     //ad event
     createForm.addEventListener('submit', (event) => {
         event.preventDefault();
         const dataForm = getCreateData(createForm)
         handlerCreateSubmit(dataForm)
     })
+
+    if(productId){
+
+        try {
+            const user = await getSessionData()
+            const token = user.token  
+            const productToUpdate = await getProduct(productId, token)
+            // pintar los datos en los campos  del formulario
+            // await setCreateData(createForm, productToUpdate)
+            console.log('product to update', productToUpdate);
+            console.log('DesdeCreatecontroller', user)
+            if (!productToUpdate && user.id !== productToUpdate.userId) {
+                // Si no hay un producto a actualizar se limpian los campos del formulario de creación
+                createForm['name'].value = ''
+                createForm['description'].value = ''
+                createForm['price'].value = ''
+                createForm.reset()
+            } else {
+                // Se rellenan los campos del formulario de creación con la información del producto que se va a editar
+                // Se rellenan los campos del formulario de creación con la información del producto que se va a actualizar
+                // En caso contrario se rellenan con la información del producto que se      va a editar         
+                createForm['name'].value = productToUpdate.name
+                createForm['description'].value = productToUpdate.description
+                createForm['price'].value = productToUpdate.price
+                createForm['state'].value = productToUpdate.state
+                createForm['category'].value = productToUpdate.category
+                
+               
+            }     
+        } catch (error) {
+            console.log(error)
+            throw new Error(error)
+            
+        }
+    }
+
 
     const handlerCreateSubmit = (dataForm) => {
         let errors = []
@@ -38,7 +82,7 @@ export const createController = (createForm) => {
             setTimeout(() => {
                 window.location.href = '/'
             }, 2500)
-            
+
         } catch (error) {
             console.log(error);
             dispatchEvent('create-product-notification', {
@@ -81,7 +125,11 @@ export const createController = (createForm) => {
 
             }
         }
+    }
 
+    const setCreateData = async (createForm, productToUpdate) => {
+       
+        return   
     }
 
     

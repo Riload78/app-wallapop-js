@@ -1,14 +1,15 @@
 import { buildView, buildToolbar } from "./detailView.js";
-import { getProduct, getUserData, deleteProduct } from "./detailModel.js";
+import { getProduct, deleteProduct} from "./detailModel.js";
 import { dispatchEvent } from "../../helper/dispatchEvent.js";
 
-export const viewController = async (viewWrapper) => {
+export const viewController = async (viewWrapper, getSessionData) => {
     console.log(viewWrapper);
     // obtener los parametros de la url
     const url = window.location.search
     const queryParams = new URLSearchParams(url);
     const productId = queryParams.get('id')
-    console.log(productId);
+
+    
 
    
     // OBtener los datos del api del producto en cuestion
@@ -35,14 +36,21 @@ export const viewController = async (viewWrapper) => {
 
     
     async function handlerToolbar(product, buildToolbar) {
-        const token = localStorage.getItem('token')
-        const user = await getUserData(token)
+        // const token = localStorage.getItem('token')
+        const user = await getSessionData()
+        const token = user.token
         if (user.id === product.userId) {
             renderActionView(buildToolbar)
             const removeButton = viewWrapper.querySelector('#remove-button')
+            const editButton = viewWrapper.querySelector('#edit-button')
             removeButton.addEventListener("click", ()=> {
                 console.log('btn-remove');
                 removeProduct(product.id, token)
+            })
+
+            editButton.addEventListener( "click" ,() =>{
+                //redirect to create producto form   with the data of this one
+                window.location.href= `/create.html?id=${product.id}`;
             })
         }
     }
@@ -59,7 +67,6 @@ export const viewController = async (viewWrapper) => {
 
             setTimeout( () => {
                 document.location.href = "index.html"
-
             },3000)
            
        }catch (error) {

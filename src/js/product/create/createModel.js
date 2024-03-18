@@ -26,3 +26,25 @@ export const createProduct = async (dataForm) => {
     }
 
 }
+
+export const getProduct = async (productId, token) => {
+    console.log('entro getProduct');
+    try {
+        const url = `${ENV.apiProductBaseUrl}products/${productId}`;
+        const options = {
+            headers: {
+                'Authorization': `Bearer ${token}` 
+            }
+        }
+
+        const response = await fetch(url, options)
+        const data = await response.json()
+        console.log(data)
+
+        return  data
+        
+    } catch (error) {
+        console.log(error)
+        throw new Error(error)
+    }
+}
