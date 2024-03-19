@@ -29,11 +29,22 @@ export const productController = async (productsListWrapper) => {
         productsListWrapper.innerHTML = buildMessage(message)
     }
 
+    const calculatePages = (numProducts) =>{
+        let pages=0; 
+        if(numProducts % 6 === 0){
+           pages = numProducts / 6    
+       }else{
+           pages = Math.floor(numProducts / 6) + 1    
+       }
+       return pages
+    }
     try {
-        
+        const start = 0
+        const limit = 8
         const productContent = renderProductContent(productsListWrapper)
         dispatchEvent('loader', {isLoading: true}, productsListWrapper)
-        const products = await getProducts(0, 8)
+        const products = await getProducts(start, limit)
+        calculatePages(products.length)
         if (products.length > 0) {
             renderProduct(productContent, products)
             productsListWrapper.appendChild(productContent)

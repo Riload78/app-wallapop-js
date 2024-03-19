@@ -1,7 +1,6 @@
 import { isSizeValidate, isPriceValidate } from "../../helper/validate.js";
 import { createProduct, getProduct, updateProduct } from "./createModel.js";
 import { dispatchEvent } from "../../helper/dispatchEvent.js";
-import { formatPrice } from "../../helper/formatPrice.js";
 
 export const createController = async (createForm, getSessionData) => {
 
