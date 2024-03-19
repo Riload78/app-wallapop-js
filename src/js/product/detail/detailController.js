@@ -24,7 +24,7 @@ export const viewController = async (viewWrapper, getSessionData) => {
         console.log(error)
         dispatchEvent('notification-view',{
             type:'error',
-            message:`No se pudo cargar eel producto: ${error}` 
+            message:`No se pudo cargar el producto: ${error}` 
         }, viewWrapper  )
     } finally{
         dispatchEvent('loader-view', { isLoading: false }, viewWrapper)

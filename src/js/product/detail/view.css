@@ -1,0 +1,25 @@
+.view-wrapper{
+
+}
+
+.view-wrapper .toolbar {
+    @apply max-w-7xl mx-auto py-6;
+}
+.view-wrapper #toolbar {
+    @apply flex justify-center gap-6;
+}
+
+.view-wrapper #toolbar button{
+    width: auto;
+}
+.view-wrapper .state {
+    @apply flex justify-between items-center pt-4 space-y-8 mt-0;
+    margin-top: 0!important;
+}
+
+.view-wrapper .type{
+    @apply bg-sky-400 px-3 py-1 mt-0 rounded-md hover:underline text-gray-900;
+    margin-top: 0!important;
+    text-transform: capitalize;
+
+}

@@ -5,10 +5,9 @@ export const getProduct = async (productId) => {
     const url = `${ENV.apiProductBaseUrl}products/${productId}`
     try {
         const response = await fetch(url)
+        if(!response.ok) throw new Error(error)
         const data = await response.json()
-        console.log(data)
         const result = parseData(data)
-        console.log(result)
         return result
         
     } catch (error) {
@@ -16,29 +15,6 @@ export const getProduct = async (productId) => {
     }
 
 }
-
-// export const getUserData = async (token) => {
-//     try {
-//         const url = `${ENV.apiUserBaseUrl}me/`
-//         const options = {
-//             headers: {
-//                 'Authorization': `Bearer ${token}`
-//             }
-//         }
-//         console.log(url, options);
-//         const response = await fetch(url, options);
-//         const data = await response.json()
-//         console.log('getUserData', data);
-//         const result = parseUser(data)
-
-        
-//         return result
-        
-//     } catch (error) {
-//         console.log(error);
-//         throw new Error(error)
-//     }
-// }
 
 export const deleteProduct = async (productId, token) => {
     try {
@@ -83,9 +59,3 @@ const parseData = (data) => {
         updatedAt: data.updatedAt
     }
 }
-
-// const parseUser = (user) => {
-//     return {
-//         id: user.id
-//     }
-// }

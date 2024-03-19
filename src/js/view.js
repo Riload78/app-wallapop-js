@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     
     viewWrapper.addEventListener('notification-view', (event) => {
-        showNotification(event.detail.message, event.detail.error)
+        showNotification(event.detail.message, event.detail.type)
     })
     
     
