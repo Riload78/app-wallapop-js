@@ -1,5 +1,9 @@
-.list-content,.skeleton-content {
+.list-content{
     @apply grid grid-cols-4 gap-4 py-8;
+}
+
+.list-wrapper{
+    @apply mb-32;
 }
 
 .list-wrapper .h2{

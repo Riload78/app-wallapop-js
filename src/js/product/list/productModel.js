@@ -1,7 +1,7 @@
 import { ENV } from "../../config/env.js";
 import { formatPrice } from "../../helper/formatPrice.js";
 
-const url = `${ENV.apiProductBaseUrl}/products`;
+const url = `${ENV.apiProductBaseUrl}/products?_page=1`;
 
 export async function getProducts() {
     try {
