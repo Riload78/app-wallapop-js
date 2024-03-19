@@ -48,3 +48,24 @@ export const getProduct = async (productId, token) => {
         throw new Error(error)
     }
 }
+
+export const updateProduct = async (productId, token, dataform) => {
+    try {
+        const url = `${ENV.apiProductBaseUrl}products/${productId}`; 
+        const options = {
+            method: 'PUT',
+            headers: {
+                'Content-Type':'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(dataform)
+        }
+        const response = await fetch(url, options)
+        const data = await response.json();
+        console.log("resData", data);
+        return data;
+    } catch (error) {
+        console.log(error)
+        throw new Error(error)
+    }
+}

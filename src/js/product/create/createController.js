@@ -1,5 +1,5 @@
 import { isSizeValidate, isPriceValidate } from "../../helper/validate.js";
-import { createProduct, getProduct } from "./createModel.js";
+import { createProduct, getProduct, updateProduct } from "./createModel.js";
 import { dispatchEvent } from "../../helper/dispatchEvent.js";
 
 export const createController = async (createForm, getSessionData) => {
@@ -11,6 +11,8 @@ export const createController = async (createForm, getSessionData) => {
     console.log(productId);
     console.log(createForm);
     console.log(productId);
+    const user = await getSessionData()
+    const token = user.token  
 
     //ad event
     createForm.addEventListener('submit', (event) => {
@@ -22,8 +24,6 @@ export const createController = async (createForm, getSessionData) => {
     if(productId){
 
         try {
-            const user = await getSessionData()
-            const token = user.token  
             const productToUpdate = await getProduct(productId, token)
             // pintar los datos en los campos  del formulario
             // await setCreateData(createForm, productToUpdate)
@@ -72,7 +72,12 @@ export const createController = async (createForm, getSessionData) => {
 
         try {
             dispatchEvent('loader-create-product', { isLoading: true }, createForm)
-            await createProduct(dataForm)
+            if (productId){
+                await updateProduct(productId, token, dataForm)
+            } else {
+
+                await createProduct(dataForm)
+            }
             dispatchEvent('loader-create-product', { isLoading: false }, createForm)
             dispatchEvent('create-product-notification', {
                 message: 'Producto creado correctamente',
