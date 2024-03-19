@@ -15,9 +15,9 @@ export const createController = async (createForm, getSessionData) => {
     const token = user.token  
 
     //ad event
-    createForm.addEventListener('submit', (event) => {
+    createForm.addEventListener('submit', async (event) => {
         event.preventDefault();
-        const dataForm = getCreateData(createForm)
+        const dataForm = await getCreateData(createForm)
         handlerCreateSubmit(dataForm)
     })
 
@@ -107,7 +107,7 @@ export const createController = async (createForm, getSessionData) => {
         })
     }
     
-    const getCreateData = (createForm) => {
+    const getCreateData = async (createForm) => {
         const formdata = new FormData(createForm)
         console.log(formdata);
         const name = formdata.get('name')
@@ -116,8 +116,15 @@ export const createController = async (createForm, getSessionData) => {
         const state = formdata.get('state')
         const category = formdata.get('category')
         const image = formdata.get('image')
-
-
+        let imageData = ""
+        try {
+            imageData = await readFileAsDataURL(image);
+            
+            
+        } catch (error) {
+            console.log(error);
+            throw new Error(error)
+        }
         return {
             name: name,
             description: descripción,
@@ -127,15 +134,28 @@ export const createController = async (createForm, getSessionData) => {
             image: {
                 name: image.name,
                 type: image.type,
-
+                dataImg: imageData
             }
         }
     }
 
-    const setCreateData = async (createForm, productToUpdate) => {
-       
-        return   
-    }
+    const readFileAsDataURL = async (file) => {
+        return new Promise((resolve, reject) => {
+            if (!file) {
+                reject(new Error('No se ha seleccionado ninguna imagen.'));
+            }
+
+            const reader = new FileReader();
+            reader.onload = () => {
+                resolve(reader.result);
+            };
+            reader.onerror = (error) => {
+                reject(error);
+            };
+            reader.readAsDataURL(file);
+        });
+    };
+
 
     
 

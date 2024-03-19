@@ -6,7 +6,7 @@ export const createProduct = async (dataForm) => {
 
     const body = {
         ... dataForm,
-        image: dataForm.image.name
+        image: dataForm.image.dataImg
     }
 
     const options = {
@@ -52,6 +52,12 @@ export const getProduct = async (productId, token) => {
 export const updateProduct = async (productId, token, dataform) => {
     try {
         const url = `${ENV.apiProductBaseUrl}products/${productId}`; 
+
+        const body = {
+            ...dataForm,
+            image: dataForm.image.dataImg
+        }
+
         const options = {
             method: 'PUT',
             headers: {
