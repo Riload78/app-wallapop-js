@@ -5,6 +5,9 @@
 .list-wrapper .h2{
     @apply text-gray-100 text-3xl font-semibold mt-0;
 }
+.list-wrapper .message .icon-wrapper scg{
+    width: 20px; 
+}
 .item{
     @apply max-w-xs rounded-md shadow-md bg-gray-900;
 }

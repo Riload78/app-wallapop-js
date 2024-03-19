@@ -6,6 +6,7 @@
 @import url('./create.css');
 @import url('../js/notification/notification.css');
 @import url('../js/loader/loader.css');
+@import url('../js/product/detail/view.css');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

@@ -2,14 +2,14 @@ import { ENV } from "../../config/env.js"
 import { formatPrice } from "../../helper/formatPrice.js"
 
 export const getProduct = async (productId) => {
-    const url = `${ENV.apiProductBaseUrl}products?id=${productId}`
+    const url = `${ENV.apiProductBaseUrl}products/${productId}`
     try {
         const response = await fetch(url)
         const data = await response.json()
         console.log(data)
         const result = parseData(data)
         console.log(result)
-        return result[0]
+        return result
         
     } catch (error) {
         throw new Error(error)
@@ -70,18 +70,18 @@ export const deleteProduct = async (productId, token) => {
 
 
 const parseData = (data) => {
-    return data.map(product => ({
-        id: product.id,
-        name: product.name,
-        description: product.description,
-        price: formatPrice(product.price),
-        state: product.state,
-        category: product.category,
-        image: product.image.data,
-        link: `${ENV.appBaseUrl}view.html?id=${product.id}`,
-        userId: product.userId,
-        updatedAt: product.updatedAt
-    }))
+    return {
+        id: data.id,
+        name: data.name,
+        description: data.description,
+        price: formatPrice(data.price),
+        state: data.state,
+        category: data.category,
+        image: data.image,
+        link: `${ENV.appBaseUrl}view.html?id=${data.id}`,
+        userId: data.userId,
+        updatedAt: data.updatedAt
+    }
 }
 
 // const parseUser = (user) => {

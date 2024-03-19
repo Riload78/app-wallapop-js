@@ -24,7 +24,7 @@ const parseData = (data) => {
         price: formatPrice(product.price),
         state: product.state,
         category: product.category,
-        image: product.image.dataImg,
+        image: product.image,
         link: `${ENV.appBaseUrl}view.html?id=${product.id}`
     }))
 }

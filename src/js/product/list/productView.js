@@ -25,28 +25,14 @@ export function buildProduct (product) {
 
 export function buildMessage (message) {
     return `
-        <div class="message">
-            <span class="icon-wrapper">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+        <div id="toast-danger" class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
+            <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200">
+                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 11.793a1 1 0 1 1-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 0 1-1.414-1.414L8.586 10 6.293 7.707a1 1 0 0 1 1.414-1.414L10 8.586l2.293-2.293a1 1 0 0 1 1.414 1.414L11.414 10l2.293 2.293Z"/>
                 </svg>
-            </span>
-            <div class="text-wrapper">
-                ${message}
+                <span class="sr-only">Error icon</span>
             </div>
-        </div>
-    `
-}
-
-export function buildSkeleton () {
-    return `
-        <div class="skeleton flex flex-col m-8 rounded shadow-md w-60 sm:w-80 animate-pulse h-96">
-            <div class="h-48 rounded-t dark:bg-gray-700"></div>
-            <div class="flex-1 px-4 py-8 space-y-4 sm:p-8 dark:bg-gray-900">
-                <div class="w-full h-6 rounded dark:bg-gray-700"></div>
-                <div class="w-full h-6 rounded dark:bg-gray-700"></div>
-                <div class="w-3/4 h-6 rounded dark:bg-gray-700"></div>
-            </div>
+            <div class="ms-3 text-sm font-normal">${message}</div>
         </div>
     `
 }

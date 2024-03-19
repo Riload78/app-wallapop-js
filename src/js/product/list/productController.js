@@ -1,5 +1,5 @@
 import { getProducts } from "./productModel.js";
-import { buildProduct, buildMessage, buildSkeleton } from "./productView.js";
+import { buildProduct, buildMessage } from "./productView.js";
 import { dispatchEvent } from "../../helper/dispatchEvent.js";
 
 
