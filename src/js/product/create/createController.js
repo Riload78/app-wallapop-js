@@ -1,78 +1,70 @@
 import { isSizeValidate, isPriceValidate } from "../../helper/validate.js";
 import { createProduct, getProduct, updateProduct } from "./createModel.js";
 import { dispatchEvent } from "../../helper/dispatchEvent.js";
+import { formatPrice } from "../../helper/formatPrice.js";
 
 export const createController = async (createForm, getSessionData) => {
 
     const url = window.location.search
     const queryParams = new URLSearchParams(url);
     const productId = queryParams.get('id')
-    //const token =  localStorage.getItem('token');
-    console.log(productId);
-    console.log(createForm);
-    console.log(productId);
     const user = await getSessionData()
     const token = user.token  
 
-    //ad event
     createForm.addEventListener('submit', async (event) => {
         event.preventDefault();
         const dataForm = await getCreateData(createForm)
         handlerCreateSubmit(dataForm)
     })
 
-    if(productId){
-
+    const getCreateData = async (createForm) => {
+        const formdata = new FormData(createForm)
+        console.log(formdata);
+        const name = formdata.get('name')
+        const descripción = formdata.get('description')
+        const price = formdata.get('price')
+        const state = formdata.get('state')
+        const category = formdata.get('category')
+        const image = formdata.get('image')
+        let imageData = ""
         try {
-            const productToUpdate = await getProduct(productId, token)
-            // pintar los datos en los campos  del formulario
-            // await setCreateData(createForm, productToUpdate)
-            console.log('product to update', productToUpdate);
-            console.log('DesdeCreatecontroller', user)
-            if (!productToUpdate && user.id !== productToUpdate.userId) {
-                // Si no hay un producto a actualizar se limpian los campos del formulario de creación
-                createForm['name'].value = ''
-                createForm['description'].value = ''
-                createForm['price'].value = ''
-                createForm.reset()
-            } else {
-                // Se rellenan los campos del formulario de creación con la información del producto que se va a editar
-                // Se rellenan los campos del formulario de creación con la información del producto que se va a actualizar
-                // En caso contrario se rellenan con la información del producto que se      va a editar         
-                createForm['name'].value = productToUpdate.name
-                createForm['description'].value = productToUpdate.description
-                createForm['price'].value = productToUpdate.price
-                createForm['state'].value = productToUpdate.state
-                createForm['category'].value = productToUpdate.category
-                
-               
-            }     
+            imageData = await readFileAsDataURL(image);
         } catch (error) {
-            console.log(error)
+            console.log(error);
             throw new Error(error)
-            
+        }
+        return {
+            name: name,
+            description: descripción,
+            price: price,
+            state: state,
+            category: category,
+            image: imageData
         }
     }
 
+    const readFileAsDataURL = async (file) => {
+        return new Promise((resolve, reject) => {
+            if (!file) {
+                reject(new Error('No se ha seleccionado ninguna imagen.'));
+            }
 
-    const handlerCreateSubmit = (dataForm) => {
-        let errors = []
-        if (!isSizeValidate(dataForm.name, 20)) errors.push("Error en el nombre del producto. Demasiasdo largo")
-        if (!isPriceValidate(dataForm.price)) errors.push("Ingrese un precio valido");
-        if (!isSizeValidate(dataForm.description, 300)) errors.push("Error en el descripción del producto. Demasiasdo largo");
-        
-        if (errors.length > 0) {
-            showErrors(errors);
-        } else {
-            sendProduct(dataForm);
-        }
-    }
+            const reader = new FileReader();
+            reader.onload = () => {
+                resolve(reader.result);
+            };
+            reader.onerror = (error) => {
+                reject(error);
+            };
+            reader.readAsDataURL(file);
+        });
+    };
 
     const sendProduct = async (dataForm) => {
 
         try {
             dispatchEvent('loader-create-product', { isLoading: true }, createForm)
-            if (productId){
+            if (productId) {
                 await updateProduct(productId, token, dataForm)
             } else {
 
@@ -95,7 +87,6 @@ export const createController = async (createForm, getSessionData) => {
                 type: 'error'
             }, createForm)
         }
-
     }
 
     const showErrors = (errors) => {
@@ -106,76 +97,40 @@ export const createController = async (createForm, getSessionData) => {
             }, createForm)
         })
     }
-    
-    const getCreateData = async (createForm) => {
-        const formdata = new FormData(createForm)
-        console.log(formdata);
-        const name = formdata.get('name')
-        const descripción = formdata.get('description')
-        const price = formdata.get('price')
-        const state = formdata.get('state')
-        const category = formdata.get('category')
-        const image = formdata.get('image')
-        let imageData = ""
-        try {
-            imageData = await readFileAsDataURL(image);
-            
-            
-        } catch (error) {
-            console.log(error);
-            throw new Error(error)
-        }
-        return {
-            name: name,
-            description: descripción,
-            price: price,
-            state: state,
-            category: category,
-            image: {
-                name: image.name,
-                type: image.type,
-                dataImg: imageData
-            }
+
+    const handlerCreateSubmit = (dataForm) => {
+        let errors = []
+        if (!isSizeValidate(dataForm.name, 40)) errors.push("Error en el nombre del producto. Demasiasdo largo")
+        if (!isPriceValidate(dataForm.price)) errors.push("Ingrese un precio valido");
+        if (!isSizeValidate(dataForm.description, 300)) errors.push("Error en el descripción del producto. Demasiasdo largo");
+
+        if (errors.length > 0) {
+            showErrors(errors);
+        } else {
+            sendProduct(dataForm);
         }
     }
 
-    const readFileAsDataURL = async (file) => {
-        return new Promise((resolve, reject) => {
-            if (!file) {
-                reject(new Error('No se ha seleccionado ninguna imagen.'));
-            }
 
-            const reader = new FileReader();
-            reader.onload = () => {
-                resolve(reader.result);
-            };
-            reader.onerror = (error) => {
-                reject(error);
-            };
-            reader.readAsDataURL(file);
-        });
-    };
+    if(productId){
+        try {
+            const productToUpdate = await getProduct(productId, token)
 
-
-    
-
-    
-
-
-
-    // Tiene que recoger los datos de formulario y enviarlos a la api para registrarlos
-        // 1.  Recoger los datos del formulario
-            // - Uso de eventos en js: onsubmit
-            // FormData 
-
-        
-        // 2. Enviar los datos a la API
-            //- Usaremos fetch, es una forma moderna de hacer llamadas http desde el navegador
-                // Metodos de fetch(): post
-                //  Headers() : permite indicar el tipo
-                // application/json
-                // body -> datos del formulario
-            
-
-    
+            if (!productToUpdate && user.id !== productToUpdate.userId) {
+                createForm['name'].value = ''
+                createForm['description'].value = ''
+                createForm['price'].value = ''
+                createForm.reset()
+            } else {
+                createForm['name'].value = productToUpdate.name
+                createForm['description'].value = productToUpdate.description
+                createForm['price'].value = productToUpdate.price
+                createForm['state'].value = productToUpdate.state
+                createForm['category'].value = productToUpdate.category
+            }     
+        } catch (error) {
+            console.log(error)
+            throw new Error(error)
+        }
+    }
 }

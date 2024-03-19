@@ -1,9 +1,9 @@
 import { ENV } from "../../config/env.js";
 import { formatPrice } from "../../helper/formatPrice.js";
 
-const url = `${ENV.apiProductBaseUrl}/products?_page=1`;
 
-export async function getProducts() {
+export async function getProducts(start, limit) {
+    const url = `${ENV.apiProductBaseUrl}/products?_start=${start}&_end=${limit}`;
     try {
         const response = await fetch(url)
         const data = await response.json()

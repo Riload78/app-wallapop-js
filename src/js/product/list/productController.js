@@ -20,13 +20,20 @@ export const productController = async (productsListWrapper) => {
             productContent.appendChild(productItem)
         });
     }
-
+    // Quiza haya quye normalizar esto forma de mostrar el mensaje
+    const renderMessage = (productsListWrapper) => {
+        const message = `No hay productos disponibles en esta tienda.`
+        const messageDiv = document.createElement('div')
+        messageDiv.classList = 'message message-info'
+        messageDiv.textContent = message
+        productsListWrapper.innerHTML = buildMessage(message)
+    }
 
     try {
         
         const productContent = renderProductContent(productsListWrapper)
         dispatchEvent('loader', {isLoading: true}, productsListWrapper)
-        const products = await getProducts()
+        const products = await getProducts(0, 8)
         if (products.length > 0) {
             renderProduct(productContent, products)
             productsListWrapper.appendChild(productContent)
@@ -42,13 +49,6 @@ export const productController = async (productsListWrapper) => {
         dispatchEvent('loader', { isloading: false }, productsListWrapper)
     }
 
-   // Quiza haya quye normalizar esto forma de mostrar el mensaje
-    const renderMessage = (productsListWrapper) => {
-        const message = `No hay productos disponibles en esta tienda.`
-        const messageDiv = document.createElement('div')
-        messageDiv.classList = 'message message-info'
-        messageDiv.textContent = message
-        productsListWrapper.innerHTML = buildMessage(message)
-    }
+   
 }
 

@@ -6,7 +6,7 @@ export const createProduct = async (dataForm) => {
 
     const body = {
         ... dataForm,
-        image: dataForm.image.dataImg
+        image: dataForm.image
     }
 
     const options = {
@@ -49,13 +49,13 @@ export const getProduct = async (productId, token) => {
     }
 }
 
-export const updateProduct = async (productId, token, dataform) => {
+export const updateProduct = async (productId, token, dataForm) => {
     try {
         const url = `${ENV.apiProductBaseUrl}products/${productId}`; 
 
         const body = {
             ...dataForm,
-            image: dataForm.image.dataImg
+            image: dataForm.image
         }
 
         const options = {
@@ -64,7 +64,7 @@ export const updateProduct = async (productId, token, dataform) => {
                 'Content-Type':'application/json',
                 'Authorization': `Bearer ${token}`
             },
-            body: JSON.stringify(dataform)
+            body: JSON.stringify(body)
         }
         const response = await fetch(url, options)
         const data = await response.json();
