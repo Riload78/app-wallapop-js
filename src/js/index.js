@@ -18,22 +18,32 @@ document.addEventListener("DOMContentLoaded", () => {
     
     const { showNotification } = notificationControler(notificationWrapper)
     const { loaderStatus } = loaderController(loaderWrapper)
+    const { handleUrlChange } = productController(productListWrapper)
+    
     
     
     productListWrapper.addEventListener('error-loading-products', (event) => {
-        console.log(event);
+        // console.log(event);
         showNotification(event.detail.message.message, event.detail.type) 
     })
     
     productListWrapper.addEventListener('loader', (event) => {
-        console.log('event-loader:', event);
+        // console.log('event-loader:', event);
         loaderStatus(event.detail.isLoading)
         
     })
     
+    searchWrapper.addEventListener('search-params', (event) => {
+        console.log('search', event);
+        console.log(event.detail.url);
+        handleUrlChange(event.detail.url)
+    })
+    
     paginationController(topPaginationWrapper)
+    
     searchController(searchWrapper)
     productController(productListWrapper)
     paginationController(paginationWrapper)
     sessionController(sessionWapper)
+    
 })

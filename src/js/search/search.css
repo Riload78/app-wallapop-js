@@ -9,9 +9,9 @@
 }
 
 .dropdown-content{
-    @apply z-10 divide-y divide-gray-100 rounded-lg shadow w-44 bg-gray-700;
+    @apply z-10 divide-y divide-gray-100  shadow w-44 bg-gray-700;
     position: absolute;
-    top:40px;
+    top:36px;
 }
 .content-form{
     @apply flex;

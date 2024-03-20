@@ -3,13 +3,22 @@ import { buildProduct, buildMessage } from "./productView.js";
 import { dispatchEvent } from "../../helper/dispatchEvent.js";
 
 
-export const productController = async (productsListWrapper) => {
-
-    const url = window.location.search
+export const productController =  (productsListWrapper) => {
+    const url = window.location.href;
     const queryParams = new URLSearchParams(url);
-
-    const start = queryParams.size > 0 ? parseInt(queryParams.get('start')) : 0
-    const limit = queryParams.size > 0 ? parseInt(queryParams.get('limit')) : 8
+    const start = queryParams.has("start") ? parseInt(queryParams.get('start')) : 0
+    const limit = queryParams.has("limit") ? parseInt(queryParams.get('limit')) : 8
+    const search = queryParams.has("name_like") ? queryParams.get("name_like") : ""
+    
+    // Agregar un event listener para el evento popstate
+    // productsListWrapper.addEventListener('search-params', handleUrlChange);
+    
+    // Llama a handleUrlChange al cargar la página para manejar la URL inicial
+    
+    
+    
+    // const url = window.location.search
+    
 
     const renderProductContent = (productsListWrapper) => {
         const productContent = document.createElement('div')
@@ -35,26 +44,48 @@ export const productController = async (productsListWrapper) => {
         productsListWrapper.innerHTML = buildMessage(message)
     }
 
+    const handlerProduct = async (start, limit, search) => {
 
-    try {
-
-        const productContent = renderProductContent(productsListWrapper)
-        dispatchEvent('loader', {isLoading: true}, productsListWrapper)
-        const products = await getProducts(start, limit)
-        if (products.length > 0) {
-            renderProduct(productContent, products)
-            productsListWrapper.appendChild(productContent)
-        } else {
-            renderMessage(productsListWrapper)      
-        } 
-    } catch (error) {
-        dispatchEvent('error-loading-products',{
-            message: error,
-            type: 'error'
-        }, productsListWrapper)
-    } finally{
-        dispatchEvent('loader', { isloading: false }, productsListWrapper)
+        try {
+            const productContent = renderProductContent(productsListWrapper)
+            dispatchEvent('loader', {isLoading: true}, productsListWrapper)
+            const products = await getProducts(start, limit , search)
+            if (products.length > 0) {
+                renderProduct(productContent, products)
+                productsListWrapper.appendChild(productContent)
+            } else {
+                renderMessage(productsListWrapper)      
+            } 
+        } catch (error) {
+            dispatchEvent('error-loading-products',{
+                message: error,
+                type: 'error'
+            }, productsListWrapper)
+        } finally{
+            dispatchEvent('loader', { isloading: false }, productsListWrapper)
+        }
     }
+
+
+
+    const handleUrlChange = (url) => {
+    
+        const queryParams = new URLSearchParams(url);
+
+        const start = queryParams.has("start") ? parseInt(queryParams.get('start')) : 0
+        const limit = queryParams.has("limit") ? parseInt(queryParams.get('limit')) : 8
+        const search = queryParams.has("name_like") ? queryParams.get("name_like") : ""
+
+        productsListWrapper.innerHTML = ''
+        handlerProduct(start, limit, search)
+    }
+
+    handlerProduct(start, limit, search)
+    
+
+    return { handleUrlChange }
+
+    
 
    
 }
