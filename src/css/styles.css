@@ -8,7 +8,7 @@ body{
     @apply mt-8 text-3xl font-bold text-gray-700;
 }
 .content{
-    @apply container mx-auto;
+    @apply container mx-auto mb-16;
 }
 
 .title-wrapper{

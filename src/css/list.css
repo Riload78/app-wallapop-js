@@ -3,7 +3,7 @@
 }
 
 .list-wrapper{
-    @apply mb-32;
+    @apply mb-8;
 }
 
 .list-wrapper .h2{
