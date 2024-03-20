@@ -5,6 +5,12 @@ import { dispatchEvent } from "../../helper/dispatchEvent.js";
 
 export const productController = async (productsListWrapper) => {
 
+    const url = window.location.search
+    const queryParams = new URLSearchParams(url);
+
+    const start = queryParams.size > 0 ? parseInt(queryParams.get('start')) : 0
+    const limit = queryParams.size > 0 ? parseInt(queryParams.get('limit')) : 8
+
     const renderProductContent = (productsListWrapper) => {
         const productContent = document.createElement('div')
         productContent.classList.add('list-content')
@@ -29,22 +35,12 @@ export const productController = async (productsListWrapper) => {
         productsListWrapper.innerHTML = buildMessage(message)
     }
 
-    const calculatePages = (numProducts) =>{
-        let pages=0; 
-        if(numProducts % 6 === 0){
-           pages = numProducts / 6    
-       }else{
-           pages = Math.floor(numProducts / 6) + 1    
-       }
-       return pages
-    }
+
     try {
-        const start = 0
-        const limit = 8
+
         const productContent = renderProductContent(productsListWrapper)
         dispatchEvent('loader', {isLoading: true}, productsListWrapper)
         const products = await getProducts(start, limit)
-        calculatePages(products.length)
         if (products.length > 0) {
             renderProduct(productContent, products)
             productsListWrapper.appendChild(productContent)
