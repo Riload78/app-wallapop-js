@@ -38,6 +38,8 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(event.detail.url);
         handleUrlChange(event.detail.url)
     })
+
+    
     
     paginationController(topPaginationWrapper)
     

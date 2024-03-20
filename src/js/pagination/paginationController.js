@@ -44,6 +44,6 @@ export const paginationController = (paginationWrapper) => {
         return items
     }
 
-    const pagination = renderPaginationContent(start, limit)
+    renderPaginationContent(start, limit)
     
 }

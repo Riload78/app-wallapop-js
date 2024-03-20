@@ -9,6 +9,7 @@ export const productController =  (productsListWrapper) => {
     const start = queryParams.has("start") ? parseInt(queryParams.get('start')) : 0
     const limit = queryParams.has("limit") ? parseInt(queryParams.get('limit')) : 8
     const search = queryParams.has("name_like") ? queryParams.get("name_like") : ""
+    const category = queryParams.has("category") ? queryParams.get("category") : ''
     
     // Agregar un event listener para el evento popstate
     // productsListWrapper.addEventListener('search-params', handleUrlChange);
@@ -44,12 +45,12 @@ export const productController =  (productsListWrapper) => {
         productsListWrapper.innerHTML = buildMessage(message)
     }
 
-    const handlerProduct = async (start, limit, search) => {
+    const handlerProduct = async (start, limit, search, category) => {
 
         try {
             const productContent = renderProductContent(productsListWrapper)
             dispatchEvent('loader', {isLoading: true}, productsListWrapper)
-            const products = await getProducts(start, limit , search)
+            const products = await getProducts(start, limit , search, category)
             if (products.length > 0) {
                 renderProduct(productContent, products)
                 productsListWrapper.appendChild(productContent)
@@ -74,13 +75,13 @@ export const productController =  (productsListWrapper) => {
 
         const start = queryParams.has("start") ? parseInt(queryParams.get('start')) : 0
         const limit = queryParams.has("limit") ? parseInt(queryParams.get('limit')) : 8
-        const search = queryParams.has("name_like") ? queryParams.get("name_like") : ""
-
+        const search = queryParams.has("name_like") ? queryParams.get("name_like") : ''
+        const category =  queryParams.has("category_like") ? queryParams.get("category_like") : ''
         productsListWrapper.innerHTML = ''
-        handlerProduct(start, limit, search)
+        handlerProduct(start, limit, search, category)
     }
 
-    handlerProduct(start, limit, search)
+    handlerProduct(start, limit, search, category)
     
 
     return { handleUrlChange }

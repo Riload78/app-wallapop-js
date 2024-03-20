@@ -4,10 +4,11 @@ import { buildSearchForm } from "./searchView.js"
 export const searchController = (searchWrapper) => {
 
     searchWrapper.innerHTML = buildSearchForm()
+
     const dropdownButton = searchWrapper.querySelector('#dropdown-button');
     const dropdownMenu = searchWrapper.querySelector('#dropdown');
     const searchForm = searchWrapper.querySelector('#search-form')
-    const categoryForm = searchForm.querySelector('.category-select')
+    const categoriesLink = searchForm.querySelectorAll('#dropdown ul li')
 
     dropdownButton.addEventListener('click', function () {
         if (dropdownMenu.classList.contains('hidden')) {
@@ -24,11 +25,18 @@ export const searchController = (searchWrapper) => {
         console.log(search);
         const newUrl = `?name_like=${search}`;
         dispatchEvent('search-params', { search: search, url: newUrl }, searchWrapper)
-        // history.pushState(null, '', newUrl);
     })
 
-    categoryForm.addEventListener('click', (event) => {
+    categoriesLink.forEach(category => {
+        category.addEventListener('click', (event) => {
+            event.preventDefault()
+            const category =  event.target.dataset.category
+            const newUrl = `?category_like=${category}`
+            dispatchEvent('search-params', { search: category, url: newUrl }, searchWrapper)
+    
+        })
+    });
 
-    })
+
 
 }
