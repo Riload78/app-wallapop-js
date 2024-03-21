@@ -33,9 +33,22 @@ export const searchController = (searchWrapper) => {
             const category =  String(event.target.dataset.category);
             const newUrl = `?category_like=${category}`
             dispatchEvent('search-params', { search: '', category: category, url: newUrl }, searchWrapper)
-    
+            createClearButton()
         })
     });
+
+
+    const createClearButton = () => {
+        const btnClear = document.createElement('div')
+        btnClear.classList.add('btn','btn-primary', 'btn-clean')
+        btnClear.textContent = 'Eliminar filtros'
+        searchWrapper.appendChild(btnClear)
+        btnClear.addEventListener('click', ()=> {
+            console.log('click');
+            dispatchEvent('clean-filters',{ search:'', category:'' }, searchWrapper)
+            btnClear.parentNode.removeChild(btnClear)
+        })
+    }
 
 
 

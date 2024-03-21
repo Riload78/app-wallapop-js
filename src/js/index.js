@@ -52,6 +52,11 @@ document.addEventListener("DOMContentLoaded", () => {
         handlerProductNumber(event.detail.url)
     })
 
+    searchWrapper.addEventListener('clean-filters', (event)=> {
+        handleUrlChange(event.detail.search, event.detail.category, event.detail.url)
+        handlerProductNumber(event.detail.url)
+    })
+
 
 
 
