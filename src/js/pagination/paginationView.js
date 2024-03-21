@@ -10,7 +10,7 @@ export function buildPagination(page, pagesCount) {
 
 export function buildItemsPagination(page, start, limit) {
     return `
-       <a href="?start=${start}&limit=${limit}" class="flex items-center justify-center px-4 h-10 leading-tight border bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white">${page}</a>
+       <div data-pagination="?start=${start}&limit=${limit}" class="item-page-link flex items-center justify-center px-4 h-10 leading-tight border bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white">${page}</div>
     `
 }
 

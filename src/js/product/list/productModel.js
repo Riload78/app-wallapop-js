@@ -3,7 +3,7 @@ import { formatPrice } from "../../helper/formatPrice.js";
 
 
 export async function getProducts(start, limit, search, category) {
-    const url = `${ENV.apiProductBaseUrl}/products?_start=${start}&_limit=${limit}&name_like=${search}&category_like=${category}`;
+    const url = `${ENV.apiProductBaseUrl}products?_start=${start}&_limit=${limit}&name_like=${search}&category_like=${category}`;
     try {
         const response = await fetch(url)
         const data = await response.json()

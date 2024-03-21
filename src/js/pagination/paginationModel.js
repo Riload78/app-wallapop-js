@@ -1,7 +1,7 @@
 import { ENV } from "../config/env.js"
 
-export const getProducts = async () => {
-    const url = `${ENV.apiProductBaseUrl}/products`;
+export const getProducts = async (search, category) => {
+    const url = `${ENV.apiProductBaseUrl}products?&name_like=${search}&category_like=${category}`;
     try {
         const response = await fetch(url)
         const data = await response.json()

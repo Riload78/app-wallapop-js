@@ -54,6 +54,10 @@ export const productController =  (productsListWrapper) => {
             if (products.length > 0) {
                 renderProduct(productContent, products)
                 productsListWrapper.appendChild(productContent)
+                dispatchEvent('products-number', {
+                    searchFilter: search,
+                    categoryFilter: category
+                }, productsListWrapper) 
             } else {
                 renderMessage(productsListWrapper)      
             } 
