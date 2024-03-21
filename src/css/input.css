@@ -1,13 +1,13 @@
 @import url('./styles.css');
 @import url('./header.css');
-@import url('./login.css');
-@import url('./list.css');
-/* @import url('../js/notification/message.css'); */
-@import url('./create.css');
-@import url('../js/notification/notification.css');
-@import url('../js/loader/loader.css');
-@import url('../js/product/detail/view.css');
-@import url('../js/search/search.css');
+@import url('../js/login/css/login.css');
+@import url('../js/product/list/css/list.css');
+@import url('../js/product/create/css/create.css');
+@import url('../js/notification/css/notification.css');
+@import url('../js/loader/css/loader.css');
+@import url('../js/product/detail/css/view.css');
+@import url('../js/search/css/search.css');
+@import url('../js/pagination/css/pagination.css');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

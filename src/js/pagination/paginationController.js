@@ -34,28 +34,22 @@ export const paginationController = (paginationWrapper) => {
     }
 
     const handlerLinksPagination = (search, category) => {
-        const paginationItems = paginationWrapper.querySelectorAll('#items')
-        console.log(paginationItems);
-       
+        const paginationItems = paginationWrapper.querySelectorAll('#items .item-page-link')
         paginationItems.forEach(item => {
             item.addEventListener('click', (event) => {
-                event.preventDefault()
-                console.log(event);
-                console.log(event.target.dataset.pagination)
-                console.log('click')
+                paginationItems.forEach(otherItem => otherItem.classList.remove('active'))
+                event.target.classList.add('active')
                 const newUrl = event.target.dataset.pagination
-                console.log(newUrl)
-                dispatchEvent('search-params', { search: search, category: category, url: newUrl }, paginationWrapper)
-                
-            })
+                dispatchEvent('search-params', { search, category, url: newUrl }, paginationWrapper)
+            });
         });
-    }
+    };
 
    
 
     const calculatePages = async (limit, search, category) => {
         try {
-           
+
             const numProducts = await getProducts(search, category)
             let pages = 0;
             if (numProducts % limit === 0) {
@@ -64,12 +58,11 @@ export const paginationController = (paginationWrapper) => {
                 pages = Math.floor(numProducts / limit) + 1
             }
             return pages
-            
+
         } catch (error) {
-            console.log(error);
             throw new Error(error)
         }
-        
+
     }
  
     const renderPaginationItem = (pages, start, limit) => {
@@ -78,7 +71,6 @@ export const paginationController = (paginationWrapper) => {
             items += buildItemsPagination(index + 1, start, limit)
             start += limit;
         }
-
         
         return items
     }

@@ -4,6 +4,9 @@ import { loaderController } from "./loader/loader-controller.js";
 import { sessionController } from "./session/session-controller.js";
 import { paginationController } from "./pagination/paginationController.js";
 import { searchController } from "./search/searchController.js";
+import { currencyController } from "./currency/currencyController.js";
+
+
 document.addEventListener("DOMContentLoaded", () => {
     
     const productListWrapper = document.querySelector('.list-wrapper')
@@ -13,13 +16,14 @@ document.addEventListener("DOMContentLoaded", () => {
     // const paginationWrapper = document.querySelector('#bottom-pagination')
     const topPaginationWrapper = document.querySelector('#top-pagination')
     const searchWrapper = document.querySelector('.search-wrapper')
-
+    const currencyWrapper = document.querySelector('.currency-wrapper')
     
     
     const { showNotification } = notificationControler(notificationWrapper)
     const { loaderStatus } = loaderController(loaderWrapper)
     const { handleUrlChange } = productController(productListWrapper)
     const { handlerProductNumber } = paginationController(topPaginationWrapper)
+
     
     
     
@@ -67,5 +71,6 @@ document.addEventListener("DOMContentLoaded", () => {
     //productController(productListWrapper)
     //paginationController(paginationWrapper)
     sessionController(sessionWapper)
+    currencyController(currencyWrapper)
     
 })

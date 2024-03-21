@@ -1,0 +1,13 @@
+.pagination-wrapper{
+
+}
+
+.pagination-wrapper .item-page-link{
+
+    @apply flex items-center justify-center px-4 h-10 leading-tight border bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white
+
+}
+
+.pagination-wrapper .item-page-link.active{
+    @apply !text-white !bg-cyan-700
+}

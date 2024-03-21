@@ -9,6 +9,24 @@ export const searchController = (searchWrapper) => {
     const dropdownMenu = searchWrapper.querySelector('#dropdown');
     const searchForm = searchWrapper.querySelector('#search-form')
     const categoriesLink = searchForm.querySelectorAll('#dropdown ul li')
+    let clearButton
+
+    const createClearButton = () => {
+        if (!clearButton) {
+            const btnClear = document.createElement('div')
+            btnClear.classList.add('btn', 'btn-primary', 'btn-clean')
+            btnClear.textContent = 'Eliminar filtros'
+            searchWrapper.appendChild(btnClear)
+            clearButton = btnClear
+
+
+            clearButton.addEventListener('click', () => {
+                dispatchEvent('clean-filters', { search: '', category: '' }, searchWrapper)
+                searchWrapper.removeChild(clearButton)
+                clearButton = null
+            })
+        }
+    }
 
     dropdownButton.addEventListener('click', function () {
         if (dropdownMenu.classList.contains('hidden')) {
@@ -25,31 +43,20 @@ export const searchController = (searchWrapper) => {
         console.log(search);
         const newUrl = `?name_like=${search}`;
         dispatchEvent('search-params', { search: search, category:'', url: newUrl }, searchWrapper)
+        createClearButton()
     })
-
-    categoriesLink.forEach(category => {
-        category.addEventListener('click', (event) => {
-            event.preventDefault()
-            const category =  String(event.target.dataset.category);
-            const newUrl = `?category_like=${category}`
-            dispatchEvent('search-params', { search: '', category: category, url: newUrl }, searchWrapper)
-            createClearButton()
-        })
-    });
-
-
-    const createClearButton = () => {
-        const btnClear = document.createElement('div')
-        btnClear.classList.add('btn','btn-primary', 'btn-clean')
-        btnClear.textContent = 'Eliminar filtros'
-        searchWrapper.appendChild(btnClear)
-        btnClear.addEventListener('click', ()=> {
-            console.log('click');
-            dispatchEvent('clean-filters',{ search:'', category:'' }, searchWrapper)
-            btnClear.parentNode.removeChild(btnClear)
+    
+    const renderCategories = () =>{
+        categoriesLink.forEach(category => {
+            category.addEventListener('click', (event) => {
+                event.preventDefault()
+                const category = String(event.target.dataset.category);
+                const newUrl = `?category_like=${category}`
+                dispatchEvent('search-params', { search: '', category: category, url: newUrl }, searchWrapper)
+                createClearButton()
+            })
         })
     }
-
-
-
+    
+    renderCategories()
 }

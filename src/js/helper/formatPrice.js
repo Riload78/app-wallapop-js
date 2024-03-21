@@ -8,8 +8,9 @@ export function formatPrice (price) {
 
 function getCurrencyCode(language){
     const currencies = {
-        'es_ES': 'EUR',
-        'en_US': 'USD'
+        'es-ES': 'EUR',
+        'en-US': 'USD',
+        'en-GB-oxendict': 'GBP'
     }
     return currencies[language] || 'EUR'
 }
