@@ -1,13 +1,14 @@
-.pagination-wrapper{
-
+.pagination-wrapper .items{
+    @apply  justify-end px-16;
 }
 
 .pagination-wrapper .item-page-link{
-
     @apply flex items-center justify-center px-4 h-10 leading-tight border bg-gray-800 border-gray-700 text-gray-400 hover:bg-gray-700 hover:text-white
-
+}
+.pagination-wrapper .item-page-link:hover{
+    cursor:pointer;
 }
 
 .pagination-wrapper .item-page-link.active{
-    @apply !text-white !bg-cyan-700
+    @apply !text-white !bg-sky-500
 }

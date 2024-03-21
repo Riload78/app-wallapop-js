@@ -21,4 +21,15 @@ body .btn-primary{
 body .btn-secondary {
     @apply w-full px-8 py-3 font-semibold rounded-md bg-sky-400 text-gray-900 hover:bg-sky-600 transition ease-in-out;
 }
+.header-content {
+    @apply bg-gradient-to-r from-cyan-500 to-gray-900 shadow-sm shadow-teal-600;
+}
+
+.header-wrapper {
+    @apply flex justify-between items-center px-8 py-4;
+}
+
+.header-wrapper .actions-wrapper {
+    @apply flex;
+}
 

@@ -18,40 +18,28 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchWrapper = document.querySelector('.search-wrapper')
     const currencyWrapper = document.querySelector('.currency-wrapper')
     
-    
     const { showNotification } = notificationControler(notificationWrapper)
     const { loaderStatus } = loaderController(loaderWrapper)
-    const { handleUrlChange } = productController(productListWrapper)
+   
     const { handlerProductNumber } = paginationController(topPaginationWrapper)
-
-    
-    
     
     productListWrapper.addEventListener('error-loading-products', (event) => {
-        // console.log(event);
         showNotification(event.detail.message.message, event.detail.type) 
     })
     
     productListWrapper.addEventListener('loader', (event) => {
-        // console.log('event-loader:', event);
         loaderStatus(event.detail.isLoading)
-        
     })
 
     topPaginationWrapper.addEventListener('search-params', (event) => {
-        
         handleUrlChange(event.detail.search, event.detail.category, event.detail.url)
     })
 
     productListWrapper.addEventListener('products-number', (event) => {
         console.log(event.detail.searchFilter, event.detail.categoryFilter);
-       // handlerProductNumber(event.detail.searchFilter, event.detail.categoryFilter)
-        //handleUrlChange(event.detail.url)
     })
     
     searchWrapper.addEventListener('search-params', (event) => {
-        console.log('search', event);
-        console.log(event.detail.url);
         handleUrlChange(event.detail.search, event.detail.category, event.detail.url)
         handlerProductNumber(event.detail.url)
     })
@@ -60,16 +48,10 @@ document.addEventListener("DOMContentLoaded", () => {
         handleUrlChange(event.detail.search, event.detail.category, event.detail.url)
         handlerProductNumber(event.detail.url)
     })
-
-
-
-
     
-    //paginationController(topPaginationWrapper)
     
+    const { handleUrlChange } = productController(productListWrapper)
     searchController(searchWrapper)
-    //productController(productListWrapper)
-    //paginationController(paginationWrapper)
     sessionController(sessionWapper)
     currencyController(currencyWrapper)
     

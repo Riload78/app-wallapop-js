@@ -1,6 +1,23 @@
 .search-wrapper{
-    @apply py-16;
+    @apply py-4;
+    position:relative;
 }
+
+.search-wrapper .btn-clean{
+    @apply w-max mt-4;
+    position: absolute;
+
+}
+ .search-wrapper .search-input{
+    @apply block p-2.5 w-full z-20 text-sm rounded-e-lg border-s-2 border 
+            focus:ring-gray-500 bg-gray-700 border-s-gray-700 border-gray-600
+            placeholder-gray-400 text-white focus:border-gray-800
+ }
+  .search-wrapper .search-btn{
+    @apply absolute top-0 end-0 p-2.5 text-sm font-medium h-full
+     text-white  rounded-e-lg border border-sky-500 focus:ring-4 
+     focus:outline-none bg-sky-500 hover:bg-sky-700 focus:ring-sky-800;
+  }
 
 .dropdown-button{
     @apply flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 

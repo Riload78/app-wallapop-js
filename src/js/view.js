@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const {loaderStatus} = loaderController(loaderWrapper)
     const { getSessionData } = sessionController(sessionWrapper)
     
-    // addevenlistener
     viewWrapper.addEventListener('loader-view', (event) => {
         console.log(event);
         loaderStatus(event.detail.isLoading)
@@ -24,9 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
         showNotification(event.detail.message, event.detail.type)
     })
     
-    
-    
     viewController(viewWrapper, getSessionData)
-
 
 })

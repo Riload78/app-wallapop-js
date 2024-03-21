@@ -29,7 +29,7 @@ export const productController =  (productsListWrapper) => {
     }
     // Quiza haya quye normalizar esto forma de mostrar el mensaje
     const renderMessage = (productsListWrapper) => {
-        const message = `No hay productos disponibles en esta tienda.`
+        const message = `No hay productos disponibles.`
         const messageDiv = document.createElement('div')
         messageDiv.classList = 'message message-info'
         messageDiv.textContent = message

@@ -1,6 +1,6 @@
 export function buildPagination(page, pagesCount) {
     return `
-        <nav class="flex" aria-label="Page navigation example">
+        <nav class="nav">
             <div id="items" class="items flex"></div>
         </nav>
     `
