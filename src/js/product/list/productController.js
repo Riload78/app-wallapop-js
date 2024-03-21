@@ -11,15 +11,6 @@ export const productController =  (productsListWrapper) => {
     const search = queryParams.has("name_like") ? queryParams.get("name_like") : ""
     const category = queryParams.has("category") ? queryParams.get("category") : ''
     
-    // Agregar un event listener para el evento popstate
-    // productsListWrapper.addEventListener('search-params', handleUrlChange);
-    
-    // Llama a handleUrlChange al cargar la página para manejar la URL inicial
-    
-    
-    
-    // const url = window.location.search
-    
 
     const renderProductContent = (productsListWrapper) => {
         const productContent = document.createElement('div')
@@ -73,14 +64,14 @@ export const productController =  (productsListWrapper) => {
 
 
 
-    const handleUrlChange = (url) => {
+    const handleUrlChange = (searchTerm, categoryTerm, url) => {
     
         const queryParams = new URLSearchParams(url);
 
         const start = queryParams.has("start") ? parseInt(queryParams.get('start')) : 0
         const limit = queryParams.has("limit") ? parseInt(queryParams.get('limit')) : 8
-        const search = queryParams.has("name_like") ? queryParams.get("name_like") : ''
-        const category =  queryParams.has("category_like") ? queryParams.get("category_like") : ''
+        const search = queryParams.has("name_like") ? queryParams.get("name_like") : String(searchTerm)
+        const category = queryParams.has("category_like") ? queryParams.get("category_like") : String(categoryTerm)
         productsListWrapper.innerHTML = ''
         handlerProduct(start, limit, search, category)
     }

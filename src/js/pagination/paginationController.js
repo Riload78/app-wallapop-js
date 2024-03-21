@@ -1,5 +1,6 @@
 import { buildPagination, buildItemsPagination } from "./paginationView.js";
 import { getProducts } from "./paginationModel.js";
+import { dispatchEvent } from "../helper/dispatchEvent.js";
 
 
 export const paginationController = (paginationWrapper) => {
@@ -24,8 +25,7 @@ export const paginationController = (paginationWrapper) => {
             const itemsContainer = paginationWrapper.querySelector('#items')
             itemsContainer.appendChild(itemsContent)
             itemsContainer.innerHTML = items
-            
-           
+            handlerLinksPagination(search, category)
             
         } catch (error) {
             console.log(error);
@@ -33,14 +33,20 @@ export const paginationController = (paginationWrapper) => {
         }
     }
 
-    const handlerLinksPagination = () => {
+    const handlerLinksPagination = (search, category) => {
         const paginationItems = paginationWrapper.querySelectorAll('#items')
         console.log(paginationItems);
+       
         paginationItems.forEach(item => {
-            item.addEvenListener('click', (event) => {
+            item.addEventListener('click', (event) => {
                 event.preventDefault()
                 console.log(event);
-                console.log('click');
+                console.log(event.target.dataset.pagination)
+                console.log('click')
+                const newUrl = event.target.dataset.pagination
+                console.log(newUrl)
+                dispatchEvent('search-params', { search: search, category: category, url: newUrl }, paginationWrapper)
+                
             })
         });
     }
@@ -77,12 +83,12 @@ export const paginationController = (paginationWrapper) => {
         return items
     }
 
-     const handlerProductNumber = (url) => {
-       console.log(url);
+    const handlerProductNumber = (url) => {
+        console.log(url);
         const queryParams = new URLSearchParams(url);
         const search = queryParams.has("name_like") ? queryParams.get("name_like") : ''
         const category = queryParams.has("category_like") ? queryParams.get("category_like") : ''
-         paginationWrapper.innerHTML = ''
+        paginationWrapper.innerHTML = ''
         renderPaginationContent(start, limit, search, category)
         
      } 

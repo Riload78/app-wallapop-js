@@ -24,15 +24,15 @@ export const searchController = (searchWrapper) => {
         const search = formSearch.get('search')
         console.log(search);
         const newUrl = `?name_like=${search}`;
-        dispatchEvent('search-params', { search: search, url: newUrl }, searchWrapper)
+        dispatchEvent('search-params', { search: search, category:'', url: newUrl }, searchWrapper)
     })
 
     categoriesLink.forEach(category => {
         category.addEventListener('click', (event) => {
             event.preventDefault()
-            const category =  event.target.dataset.category
+            const category =  String(event.target.dataset.category);
             const newUrl = `?category_like=${category}`
-            dispatchEvent('search-params', { search: category, url: newUrl }, searchWrapper)
+            dispatchEvent('search-params', { search: '', category: category, url: newUrl }, searchWrapper)
     
         })
     });
