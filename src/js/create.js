@@ -14,13 +14,12 @@ document.addEventListener( 'DOMContentLoaded', () => {
     const sessionWrapper = document.querySelector('.nav-wrapper')
     console.log('lodaderWrapper', loaderWrapper);
     const { loaderStatus } = loaderController(loaderWrapper)
-    const { showNotification } = notificationControler(notificationWrapper)
     const { getSessionData, getSession } = sessionController(sessionWrapper)
-
+    
     if (!getSession()) {
         window.location.href = 'index.html'
     }
-
+    
     
     
     createFrom.addEventListener('create-product-notification', (event) => {
@@ -33,6 +32,7 @@ document.addEventListener( 'DOMContentLoaded', () => {
         loaderStatus(event.detail.isLoading)
     })
     
+    const { showNotification } = notificationControler(notificationWrapper)
     createController(createFrom, getSessionData)
 
 })

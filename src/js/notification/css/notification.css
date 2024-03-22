@@ -11,7 +11,7 @@
 }
 
 .notification.error{
-   @apply text-red-200 bg-red-800;
+   @apply text-red-800 bg-red-200;
 }
 
 .notification.success{

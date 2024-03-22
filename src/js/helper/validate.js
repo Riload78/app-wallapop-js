@@ -12,6 +12,8 @@ export const isSizeValidate = (name, size) => {
 }
 
 export const isPriceValidate = (price) => {
-    const priceNumber = parseInt(price);
-    return !isNaN(priceNumber) && typeof (priceNumber) === 'number';
+    price = price.trim();
+
+    const priceRegex = /^\d+(?:\.\d+)?$/;
+    return priceRegex.test(price) && !isNaN(parseFloat(price));
 }

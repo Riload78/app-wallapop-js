@@ -3,7 +3,7 @@ import { createProduct, getProduct, updateProduct } from "./createModel.js";
 import { dispatchEvent } from "../../helper/dispatchEvent.js";
 
 export const createController = async (createForm, getSessionData) => {
-
+    console.log(createForm);
     const url = window.location.search
     const queryParams = new URLSearchParams(url);
     const productId = queryParams.get('id')
@@ -69,22 +69,23 @@ export const createController = async (createForm, getSessionData) => {
 
                 await createProduct(dataForm)
             }
-            dispatchEvent('loader-create-product', { isLoading: false }, createForm)
             dispatchEvent('create-product-notification', {
                 message: 'Producto creado correctamente',
                 type: 'success'
             }, createForm)
-
+            
             setTimeout(() => {
                 window.location.href = '/'
             }, 2500)
-
+            
         } catch (error) {
             console.log(error);
             dispatchEvent('create-product-notification', {
                 message: error,
                 type: 'error'
             }, createForm)
+        } finally{
+            dispatchEvent('loader-create-product', { isLoading: false }, createForm)
         }
     }
 
@@ -110,11 +111,29 @@ export const createController = async (createForm, getSessionData) => {
         }
     }
 
+    const handlerRenderEditForm = () => {
+        const titleWrapper = createForm.querySelector('.login-title')
+        const button = createForm.querySelector('button')
+        const wrapperNote = document.createElement('note')
+        wrapperNote.innerHTML = 'Para editar el anuncio se requiere adjuntar de nuevo la imagen'
+
+        const inputFile = createForm.querySelector('.file-wrapper')
+        inputFile.appendChild(wrapperNote)
+
+        const title = titleWrapper.innerHTML = '<h1 class="h1">Editar anuncio</h1>'
+        titleWrapper.innerHTML = title
+
+
+
+        button.innerHTML = 'Actualizar'
+        button.classList.add('edit')
+    }
+
 
     if(productId){
         try {
             const productToUpdate = await getProduct(productId, token)
-
+            handlerRenderEditForm()
             if (!productToUpdate && user.id !== productToUpdate.userId) {
                 createForm['name'].value = ''
                 createForm['description'].value = ''
@@ -132,4 +151,6 @@ export const createController = async (createForm, getSessionData) => {
             throw new Error(error)
         }
     }
+
+    
 }

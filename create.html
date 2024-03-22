@@ -26,11 +26,11 @@
                     </a>
                 </div>
                 <div class="create-wrapper">
-                    <div class="login-title">
-                        <h1 class="h1">Crear anuncio</h1>
-                    </div>
-
+                    
                     <form id="create-form" class="create-form">
+                        <div class="login-title">
+                            <h1 class="h1">Crear anuncio</h1>
+                        </div>
                         <div class="mb-5">
                             <label for="name"
                                 class="label">Nombre del producto</label>
@@ -63,7 +63,7 @@
                                 class="input-text"
                                 name="state"
                                 placeholder="Precio del producto" required>
-                                <option selected>Seleccione una opción</option>
+                                <option value="">Seleccione una opción</option>
                                 <option value="compra">Compra</option>
                                 <option value="venta">Venta</option>
                             </select>
@@ -75,12 +75,12 @@
                                 class="input-text"
                                 name="category"
                                 placeholder="Categoría" required>
-                                <option selected>Seleccione una opción</option>
+                                <option value="">Seleccione una opción</option>
                                 <option value="hogar">Hogar</option>
                                 <option value="electronica">Electrónica</option>
                             </select>
                         </div>
-                         <div class="mb-5">
+                         <div class="mb-5 file-wrapper">
                             <label for="image"
                                 class="label">Imagen del producto</label>
                             <input type="file" id="image"

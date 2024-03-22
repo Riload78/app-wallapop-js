@@ -7,6 +7,12 @@ body{
 .h2 {
     @apply mt-8 text-3xl font-bold text-gray-700;
 }
+
+note{
+    @apply  block mt-4 px-6 py-4 rounded border border-solid border-blue-500 bg-blue-100 text-blue-900 text-sm;
+
+}
+
 .content{
     @apply container mx-auto mb-16;
 }
@@ -17,6 +23,9 @@ body{
 
 body .btn-primary{
     @apply w-full px-8 py-3 font-semibold rounded-md bg-sky-400 text-gray-900 hover:bg-sky-600 transition ease-in-out;
+}
+.edit{
+    @apply !bg-red-300;
 }
 body .btn-secondary {
     @apply w-full px-8 py-3 font-semibold rounded-md bg-sky-400 text-gray-900 hover:bg-sky-600 transition ease-in-out;
@@ -46,5 +55,6 @@ body .btn-secondary {
 .header-wrapper .actions-wrapper .currency-wrapper {
     @apply flex justify-center;
 }
+
 
 
