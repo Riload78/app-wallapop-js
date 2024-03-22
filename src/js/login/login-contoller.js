@@ -37,11 +37,11 @@ export const loginController = (loginForm) => {
             },loginForm)
             setTimeout( () => {
                 window.location.href = "/"
-            }, 3000)
+            }, 2000)
         } catch (error) {
             dispatchEvent('login-notification',{
                 type:'error',
-                message: error.message
+                message: `Error en la petición de datos. ${error.message}`
             },loginForm)
         }
     }

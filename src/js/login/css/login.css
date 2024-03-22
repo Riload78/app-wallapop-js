@@ -1,6 +1,12 @@
 .login{
     @apply bg-gray-700;
 }
+
+.login .content .loader-wrapper{
+    @apply absolute;
+
+}
+
 .login .header-content a{
     @apply text-gray-900;
     

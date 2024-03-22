@@ -4,6 +4,7 @@ export function buildProduct (product) {
     return `
         <a href="${product.link}">
             <img class="list-image" src="${product.image}" alt="">
+             <div class="type ${product.state}">${product.state}</div>
         </a>
         <div class="list-info">
             <div class="space-y-2">
@@ -14,10 +15,7 @@ export function buildProduct (product) {
             </div>
             <div class="state">
                 <div class="price">${product.price}</div>
-                <div class="type">${product.state}</div>
-            </div>
-            <div class="list-tags">
-                <a rel="noopener noreferrer" href="#" class="tag">${product.category}</a>
+                <p class="tag">${product.category}</p>
             </div>
         </div>
     `

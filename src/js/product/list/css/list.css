@@ -1,19 +1,19 @@
 .list-content{
-    @apply grid grid-cols-4 gap-4 py-8;
+    @apply grid grid-cols-1 place-content-stretch sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 py-8;
 }
 
 .list-wrapper{
-    @apply mb-8;
+    @apply mb-8 px-4;
 }
 
-.list-wrapper .h2{
+.h2{
     @apply text-gray-100 text-3xl font-semibold mt-0;
 }
 .list-wrapper .message .icon-wrapper scg{
     width: 20px; 
 }
 .item{
-    @apply max-w-xs rounded-md shadow-md bg-gray-900;
+    @apply rounded-md shadow-md bg-gray-900;
 }
 .list-image{
     @apply object-cover object-center w-full rounded-t-md h-72 dark:bg-gray-500;
@@ -22,12 +22,15 @@
     @apply flex flex-col justify-between p-6 space-y-8;
 }
 
-.list-wrapper .type{
-    @apply bg-sky-400 px-3 py-1 mt-0 rounded-md hover:underline text-gray-900;
+.type{
+    @apply bg-sky-400 px-3 py-1 mt-0 text-gray-900 text-center uppercase tracking-widest font-bold;
     margin-top: 0!important;
-
 }
-.list-wrapper .state{
+
+.type.venta{
+    @apply bg-lime-200;
+}
+.state{
     @apply flex justify-between items-center pt-4 space-y-8 mt-0;
     margin-top: 0!important;
 }
@@ -37,13 +40,13 @@
 }
 
 .list-tags{
-    @apply flex flex-wrap pt-2 gap-2;
+    @apply flex flex-wrap gap-2;
     margin-top: 0!important;
 }
     
 
 .tag{
-    @apply bg-sky-400 px-3 py-1 rounded-md hover:underline text-gray-900;
+    @apply bg-sky-400 px-3 py-1 !m-0 rounded-md text-gray-900;
 }
 .list-message {
    @apply flex items-center w-full max-w-xl p-4 mb-4 mt-20 rounded-lg shadow text-gray-400 bg-gray-800 

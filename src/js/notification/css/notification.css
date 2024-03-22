@@ -15,7 +15,7 @@
 }
 
 .notification.success{
-    @apply text-green-500 bg-green-900;
+    @apply text-green-800 bg-green-100; 
 }
 
 /* MESSAGE */

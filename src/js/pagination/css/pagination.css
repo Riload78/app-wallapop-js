@@ -1,5 +1,5 @@
 .pagination-wrapper .items{
-    @apply  justify-end px-16;
+    @apply  justify-end px-4;
 }
 
 .pagination-wrapper .item-page-link{

@@ -26,10 +26,25 @@ body .btn-secondary {
 }
 
 .header-wrapper {
-    @apply flex justify-between items-center px-8 py-4;
+    @apply flex flex-wrap justify-between items-center px-8 py-4;
 }
 
 .header-wrapper .actions-wrapper {
-    @apply flex;
+    @apply flex flex-wrap justify-center gap-4 py-4 md:py-0;
 }
+
+.header-wrapper .actions-wrapper .nav-wrapper{
+  @apply flex flex-col flex-nowrap gap-2 items-center sm:flex-row sm:items-end;
+}
+
+.header-wrapper .actions-wrapper .nav-wrapper a{
+    display: block;
+    text-wrap: nowrap;
+    text-align: center;
+}
+
+.header-wrapper .actions-wrapper .currency-wrapper {
+    @apply flex justify-center;
+}
+
 

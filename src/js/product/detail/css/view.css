@@ -1,7 +1,12 @@
-.view-wrapper{
-
+.view-wrapper .view-content{
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
 }
-
+.view-wrapper .view-content .item {
+    @apply max-w-3xl mx-auto;
+}
+.view-wrapper .list-image{
+    @apply w-full h-auto
+}
 .view-wrapper .toolbar {
     @apply max-w-7xl mx-auto py-6;
 }
@@ -12,14 +17,4 @@
 .view-wrapper #toolbar button{
     width: auto;
 }
-.view-wrapper .state {
-    @apply flex justify-between items-center pt-4 space-y-8 mt-0;
-    margin-top: 0!important;
-}
 
-.view-wrapper .type{
-    @apply bg-sky-400 px-3 py-1 mt-0 rounded-md hover:underline text-gray-900;
-    margin-top: 0!important;
-    text-transform: capitalize;
-
-}
