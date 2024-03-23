@@ -21,7 +21,7 @@ JWT Authentication: The Sparrest library is used for user authentication using J
 
 State management: The application manages different interface states: error, loading and success.
 
-List of ads:
+Features:
 
 * Paginator: Allows efficient browsing of ads.
 * Product search: Facilitates the search for specific products.
