@@ -1,15 +1,55 @@
 
+
 # CODEPOP
 
-Desarrollo de una aplicación web similar a Wallapop realizado en vanilla javascript y Taildwind.
-La aplicación puede registrar usuarios y crear, listar, editar y eliminar productos.
+## Description:
 
-El proyecto sigue el patrón MVC y se hace uso de JWT que proporciona Sparrest para la autentificación de usuarios.
+Development of a web application similar to Wallapop using plain JavaScript and Tailwind. The application allows users to register, create, list, edit and delete products.
 
-La aplicación gestiona todos los estados de interfaz: 
-* error (cuando se produce un error al guardar la información del anuncio)
-* carga (mientras se guarda la información del anuncio en el backend) 
-* éxito (cuando se han guardado correctamente la información del anuncio)
+
+![Static Badge](https://img.shields.io/badge/HTML-94E33B)
+![Static Badge](https://img.shields.io/badge/TAILDWIND-EDCE72)
+![Static Badge](https://img.shields.io/badge/JAVASCRIPT-F679FC)
+![Static Badge](https://img.shields.io/badge/MVC-BD415B)
+
+## Features:
+
+MVC pattern: The application follows the MVC pattern for better code organization.
+
+JWT Authentication: The Sparrest library is used for user authentication using JWT tokens.
+
+State management: The application manages different interface states: error, loading and success.
+
+List of ads:
+
+* Paginator: Allows efficient browsing of ads.
+* Product search: Facilitates the search for specific products.
+* Category filtering: Allows filtering of ads by predefined categories.
+* Live update: Search and filter results are updated without the need to reload the page.
+* Price formatting: Prices are displayed in the currency corresponding to the browser language.
+
+Pending: Currency conversion using an external API.
+
+### Ad detail
+Product visualization. Editing and deletion options for the owner of the ad.
+
+### Create an ad
+
+Form for creating product ads.
+
+### Login
+
+Login form for registered users.
+
+### Registration
+
+Form for creating new users in the application.
+
+### Technologies
+
+Front-end: Plain JavaScript, Tailwind CSS
+
+Back-end: JWT, Sparrest
 
 
 ## Deployment
@@ -18,8 +58,22 @@ Para desplegar este proyecto es necesario clonarse dos repositorio:
   * Frontend App - [CodePop](https://github.com/Riload78/nodepop)
   * Api - [Sparrest](https://github.com/kasappeal/sparrest.js/tree/main)
 
-#### Api
-# Sparrest.js
+### FRONTEND
+
+Para instalar las dependencias de Taildwind
+
+```bash
+npm install
+```
+
+Para modificar los css ejecutar
+```bash
+  npm run taildwind
+```
+
+## API Reference
+
+### Sparrest.js
 
 A [json-server](https://github.com/typicode/json-server) fork to enjoy developing frontend apps without a real backend, but with JWT auth.
 
@@ -31,45 +85,10 @@ A [json-server](https://github.com/typicode/json-server) fork to enjoy developin
 4. Login to obtain your JWT token: `POST /auth/login { username: "luke", password: "skywalker" }`
 5. Start using `json-server` routes in `/api/<json-server routes>`. You'll need to auth every request by adding an HTTP header: `Authorization: Bearer <JWT token>`
 
-Instalación 
 
-```bash
-  npm run deploy
-```
+## Author
 
-
-## API Reference
-
-Para el desarrollo de la aplicación es necesario 
-
-#### Get all items
-
-```http
-  GET /api/items
-```
-
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `api_key` | `string` | **Required**. Your API key |
-
-#### Get item
-
-```http
-  GET /api/items/${id}
-```
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. Id of item to fetch |
-
-#### add(num1, num2)
-
-Takes two numbers and returns the sum.
+- [Ricardo Lopez - Riload78](https://github.com/Riload78)
 
 
-## Acknowledgements
-
- - [Awesome Readme Templates](https://awesomeopensource.com/project/elangosundar/awesome-README-templates)
- - [Awesome README](https://github.com/matiassingers/awesome-readme)
- - [How to write a Good readme](https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project)
 

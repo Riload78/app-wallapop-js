@@ -73,15 +73,12 @@ export const paginationController = (paginationWrapper) => {
     }
 
     const handlerProductNumber = (url) => {
-        console.log(url);
         const queryParams = new URLSearchParams(url);
         const search = queryParams.has("name_like") ? queryParams.get("name_like") : ''
         const category = queryParams.has("category_like") ? queryParams.get("category_like") : ''
         paginationWrapper.innerHTML = ''
         renderPaginationContent(start, limit, search, category)
-        
      } 
-
 
      renderPaginationContent(start, limit, search, category)
    

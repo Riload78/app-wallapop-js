@@ -1,7 +1,5 @@
 import { buildCurrency } from "../currency/currencyView.js";
 export const currencyController = (currencyWrapper) => {
-    console.log(currencyWrapper)
-
     const inputCurrency = currencyWrapper.querySelector("#input-currency");
 
     const renderView =  () => {
