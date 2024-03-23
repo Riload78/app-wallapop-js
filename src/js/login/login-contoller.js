@@ -6,22 +6,20 @@ export const loginController = (loginForm) => {
 
     loginForm.addEventListener('submit', (event) => {
         event.preventDefault();
-        console.log('submit:', event);
         handlerLoginSubmit()
     })
 
     const handlerLoginSubmit = () => {
         let errors = []
 
-        if (!isEmailValidate(email)) {
+        if (!isEmailValidate(email.value)) {
             errors.push('El email no es válido')
         }
-
-        showErrors(errors)
 
         if(errors.length === 0){
             submitLogin()
         }
+        showErrors(errors)
     }
 
     const submitLogin = async () => {
@@ -30,7 +28,6 @@ export const loginController = (loginForm) => {
             dispatchEvent('loader', {isLoading: true}, loginForm)
             const jwt = await loginUser(email, password)
             localStorage.setItem("token", jwt);
-            dispatchEvent('loader', { isLoading: false }, loginForm)
             dispatchEvent('login-notification', {
                 type: 'success',
                 message: 'Usuario logueado correctamente'
@@ -41,8 +38,10 @@ export const loginController = (loginForm) => {
         } catch (error) {
             dispatchEvent('login-notification',{
                 type:'error',
-                message: `Error en la petición de datos. ${error.message}`
+                message: `${error.message}`
             },loginForm)
+        } finally{
+            dispatchEvent('loader', { isLoading: false }, loginForm)
         }
     }
 

@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const { loaderStatus } = loaderController(loaderWrapper)
     
     registerForm.addEventListener('register-notifcation', (event) =>{
-        console.log(event);
         showNotification(event.detail.message, event.detail.type)
     })
     

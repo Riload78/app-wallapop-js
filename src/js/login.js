@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const { loaderStatus } = loaderController(loaderWrapper)
     
     loginForm.addEventListener('login-validation', (event) => {
-        console.log('event login', event);
         showNotification(event.detail.message, event.detail.type);
     })
     
@@ -22,9 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     
     loginForm.addEventListener('loader', (event) => {
-        console.log('event-loader:', event);
         loaderStatus(event.detail.isLoading)
-        
     })
     
     loginController(loginForm);

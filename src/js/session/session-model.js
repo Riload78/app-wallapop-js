@@ -8,17 +8,14 @@ export const getUserData = async (token) => {
                 'Authorization': `Bearer ${token}`
             }
         }
-        console.log(url, options);
+
         const response = await fetch(url, options);
         const data = await response.json()
-        console.log('getUserData', data);
         const result = parseUser(data, token)
-
 
         return result
 
     } catch (error) {
-        console.log(error);
         throw new Error(error)
     }
 }

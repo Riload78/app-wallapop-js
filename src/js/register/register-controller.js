@@ -3,16 +3,10 @@ import { dispatchEvent } from "../helper/dispatchEvent.js";
 import { isEmailValidate, isEqualPassword } from "../helper/validate.js";
 
 export function registerController (registerForm) {
-    console.log(registerForm);
-    
-    // Añado evento  submit del formulario
+
     registerForm.addEventListener('submit', function (event){
-        // Evito que el formulario se envíe por defecto
         event.preventDefault();
-        console.log(event);
-
         handlerRegisterSubmit()
-
     })
 
     const handlerRegisterSubmit = () => {
@@ -26,12 +20,11 @@ export function registerController (registerForm) {
             errors.push('Las contraseñas no coinciden')
         }
 
-        showErrors(errors)
-
         if (errors.length === 0) {
             registerUser()
         } 
-       
+        
+        showErrors(errors)
     } 
 
     const showErrors = (errors) => {
@@ -47,7 +40,6 @@ export function registerController (registerForm) {
         try {
             dispatchEvent('loader', { isLoading: true }, registerForm)
             await createUser (email.value, password.value)
-            dispatchEvent('loader', { isLoading: false }, registerForm)
             dispatchEvent('register-notifcation', {
                 message: 'Usuario creado correctamente',
                 type: 'success'
@@ -57,15 +49,14 @@ export function registerController (registerForm) {
                 window.location.href = 'login.html'
             },2500)
         } catch (error) {
-            console.log(error);
+            
             dispatchEvent('register-notifcation', {
-                message: error,
+                message: error.message,
                 type: 'error'
             }, registerForm)
-        }
-    }
+        } finally{
+            dispatchEvent('loader', { isLoading: false }, registerForm)
 
-    const toLogin = () =>{
-       
+        }
     }
 }

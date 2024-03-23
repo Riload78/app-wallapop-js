@@ -9,7 +9,6 @@ export const getProducts = async (search, category) => {
         return result
 
     } catch (error) {
-        console.log(error);
         throw new Error(`Error en la petición de datos. ${error}`);
     }
 }

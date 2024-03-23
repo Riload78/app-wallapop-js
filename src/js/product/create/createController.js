@@ -123,8 +123,6 @@ export const createController = async (createForm, getSessionData) => {
         const title = titleWrapper.innerHTML = '<h1 class="h1">Editar anuncio</h1>'
         titleWrapper.innerHTML = title
 
-
-
         button.innerHTML = 'Actualizar'
         button.classList.add('edit')
     }
@@ -147,10 +145,7 @@ export const createController = async (createForm, getSessionData) => {
                 createForm['category'].value = productToUpdate.category
             }     
         } catch (error) {
-            console.log(error)
             throw new Error(error)
         }
     }
-
-    
 }
