@@ -10,8 +10,8 @@ export function buildProduct (product) {
             <div class="space-y-2">
                 <a href="${product.link}">
                     <h2 class="h2">${product.name}</h2>
-                    <p class="text-gray-100">${product.description}</p>
                 </a>
+                <p class="text-gray-100">${product.description}</p>
             </div>
             <div class="state">
                 <div class="price">${product.price}</div>

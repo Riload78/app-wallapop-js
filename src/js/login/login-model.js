@@ -23,6 +23,6 @@ export const loginUser = async (email, password) => {
         return data.accessToken;
         
     } catch (error) {
-        throw new Error(error)
+        throw new Error('Servicio no disponible en este momento. Inténtelo más tarde')
     }
 }

@@ -20,7 +20,7 @@ export const createController = async (createForm, getSessionData) => {
         const formdata = new FormData(createForm)
         console.log(formdata);
         const name = formdata.get('name')
-        const descripción = formdata.get('description')
+        const description = formdata.get('description')
         const price = formdata.get('price')
         const state = formdata.get('state')
         const category = formdata.get('category')
@@ -34,7 +34,7 @@ export const createController = async (createForm, getSessionData) => {
         }
         return {
             name: name,
-            description: descripción,
+            description: description,
             price: price,
             state: state,
             category: category,

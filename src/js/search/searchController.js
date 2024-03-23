@@ -28,6 +28,19 @@ export const searchController = (searchWrapper) => {
         }
     }
 
+    const renderCategories = () => {
+        categoriesLink.forEach(category => {
+            category.addEventListener('click', (event) => {
+                event.preventDefault()
+                const category = String(event.target.dataset.category);
+                const newUrl = `?category_like=${category}`
+                dispatchEvent('search-params', { search: '', category: category, url: newUrl }, searchWrapper)
+                dropdownMenu.classList.add('hidden');
+                createClearButton()
+            })
+        })
+    }
+
     dropdownButton.addEventListener('click', function () {
         if (dropdownMenu.classList.contains('hidden')) {
             dropdownMenu.classList.remove('hidden');
@@ -46,17 +59,7 @@ export const searchController = (searchWrapper) => {
         createClearButton()
     })
     
-    const renderCategories = () =>{
-        categoriesLink.forEach(category => {
-            category.addEventListener('click', (event) => {
-                event.preventDefault()
-                const category = String(event.target.dataset.category);
-                const newUrl = `?category_like=${category}`
-                dispatchEvent('search-params', { search: '', category: category, url: newUrl }, searchWrapper)
-                createClearButton()
-            })
-        })
-    }
+    
     
     renderCategories()
 }

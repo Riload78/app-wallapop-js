@@ -8,7 +8,7 @@ export const productController =  (productsListWrapper) => {
     const queryParams = new URLSearchParams(url);
     const start = queryParams.has("start") ? parseInt(queryParams.get('start')) : 0
     const limit = queryParams.has("limit") ? parseInt(queryParams.get('limit')) : 8
-    const search = queryParams.has("name_like") ? queryParams.get("name_like") : ""
+    const search = queryParams.has("name_like") ? queryParams.get("name_like") : ''
     const category = queryParams.has("category") ? queryParams.get("category") : ''
     
 

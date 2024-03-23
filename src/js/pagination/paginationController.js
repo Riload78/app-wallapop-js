@@ -5,7 +5,6 @@ import { dispatchEvent } from "../helper/dispatchEvent.js";
 
 export const paginationController = (paginationWrapper) => {
 
-    console.log('paginationwraooer', paginationWrapper);
     const start = 0
     const limit = 8
     const search = ''
@@ -35,7 +34,9 @@ export const paginationController = (paginationWrapper) => {
 
     const handlerLinksPagination = (search, category) => {
         const paginationItems = paginationWrapper.querySelectorAll('#items .item-page-link')
+        paginationItems[0].classList.add('active');
         paginationItems.forEach(item => {
+
             item.addEventListener('click', (event) => {
                 paginationItems.forEach(otherItem => otherItem.classList.remove('active'))
                 event.target.classList.add('active')
@@ -44,8 +45,6 @@ export const paginationController = (paginationWrapper) => {
             });
         });
     };
-
-   
 
     const calculatePages = async (limit, search, category) => {
         try {
@@ -71,7 +70,6 @@ export const paginationController = (paginationWrapper) => {
             items += buildItemsPagination(index + 1, start, limit)
             start += limit;
         }
-        
         return items
     }
 
@@ -84,9 +82,10 @@ export const paginationController = (paginationWrapper) => {
         renderPaginationContent(start, limit, search, category)
         
      } 
+
+
      renderPaginationContent(start, limit, search, category)
    
-    
      return {
          handlerProductNumber
      }
