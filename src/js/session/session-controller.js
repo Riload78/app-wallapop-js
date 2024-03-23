@@ -6,8 +6,6 @@ export const sessionController = (sessionWapper) => {
     const token = localStorage.getItem('token')
     const isSession = () => token
 
-    // sessionWapper.innerHTML = isSession() ? buildLoggedNav() : buildNotLoggedNav();
-
     if (isSession()) {
         sessionWapper.innerHTML = buildLoggedNav()
         const logoutBtn = sessionWapper.querySelector('#logout') 
@@ -16,7 +14,8 @@ export const sessionController = (sessionWapper) => {
             localStorage.removeItem('token')
             sessionController(sessionWapper)
             window.location.href='/index.html';
-        });
+        })
+        
     } else {
         sessionWapper.innerHTML = buildNotLoggedNav()
     }
@@ -29,11 +28,9 @@ export const sessionController = (sessionWapper) => {
     const getSessionData = async () => {
         try {
             const userData = await getUserData(token)
-            console.log(userData);
             return userData
             
         } catch (error) {
-            console.log(error)
             throw new Error(error)
         }
     }

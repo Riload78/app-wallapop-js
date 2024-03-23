@@ -38,13 +38,11 @@ export const getProduct = async (productId, token) => {
         }
 
         const response = await fetch(url, options)
+        if (!response.ok) throw new Error(error)
         const data = await response.json()
-        console.log(data)
-
         return  data
         
     } catch (error) {
-        console.log(error)
         throw new Error(error)
     }
 }

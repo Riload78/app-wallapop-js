@@ -62,21 +62,46 @@ export const createController = async (createForm, getSessionData) => {
     const sendProduct = async (dataForm) => {
 
         try {
-            dispatchEvent('loader-create-product', { isLoading: true }, createForm)
+            
             if (productId) {
-                await updateProduct(productId, token, dataForm)
+                try {
+                    dispatchEvent('loader-create-product', { isLoading: true }, createForm)
+                    await updateProduct(productId, token, dataForm)
+                    dispatchEvent('create-product-notification', {
+                        type: 'success',
+                        message: 'Producto actualizado correctamente'
+                    }, createForm)
+                } catch (error) {
+                    dispatchEvent('create-product-notification', {
+                        type: 'error',
+                        message: `Se produjo un error al actualizar el producto. ${error}`
+                    }, createForm)
+                }finally {
+                    dispatchEvent('loader-create-product', { isLoading: true }, createForm)
+                    
+                }
             } else {
-
-                await createProduct(dataForm)
+                try {
+                    dispatchEvent('loader-create-product', { isLoading: true }, createForm)
+                    await createProduct(dataForm)
+                    dispatchEvent('create-product-notification', {
+                        type: 'success',
+                        message: 'Producto creado correctamente'
+                    }, createForm)
+                    
+                } catch (error) {
+                    dispatchEvent('create-product-notification', {
+                        type: 'error',
+                        message: `Se produjo un error al crear el producto. ${error}`
+                    }, createForm)
+                } finally {
+                    dispatchEvent('loader-create-product', { isLoading: true }, createForm)
+                }
             }
-            dispatchEvent('create-product-notification', {
-                message: 'Producto creado correctamente',
-                type: 'success'
-            }, createForm)
             
             setTimeout(() => {
                 window.location.href = '/'
-            }, 2500)
+            }, 2000)
             
         } catch (error) {
             console.log(error);
@@ -130,6 +155,7 @@ export const createController = async (createForm, getSessionData) => {
 
     if(productId){
         try {
+            dispatchEvent('loader-create-product', { isLoading: true }, createForm)
             const productToUpdate = await getProduct(productId, token)
             handlerRenderEditForm()
             if (!productToUpdate && user.id !== productToUpdate.userId) {
@@ -145,7 +171,12 @@ export const createController = async (createForm, getSessionData) => {
                 createForm['category'].value = productToUpdate.category
             }     
         } catch (error) {
-            throw new Error(error)
+            dispatchEvent('create-product-notification', {
+                type: 'error',
+                message: `Se produjo un error al mostar la informacion del producto a editar. ${error}`
+            }, createForm)
+        }finally {
+            dispatchEvent('loader-create-product', { isLoading: false }, createForm)
         }
     }
 }

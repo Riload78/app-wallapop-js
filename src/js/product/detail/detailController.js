@@ -3,17 +3,11 @@ import { getProduct, deleteProduct} from "./detailModel.js";
 import { dispatchEvent } from "../../helper/dispatchEvent.js";
 
 export const viewController = async (viewWrapper, getSessionData) => {
-    console.log(viewWrapper);
-    // obtener los parametros de la url
+
     const url = window.location.search
     const queryParams = new URLSearchParams(url);
     const productId = queryParams.get('id')
 
-    
-
-   
-    // OBtener los datos del api del producto en cuestion
-    // enviarlos a la vista
     try {
         dispatchEvent('loader-view', { isLoading: true }, viewWrapper)
         const product = await getProduct(productId)
@@ -28,11 +22,7 @@ export const viewController = async (viewWrapper, getSessionData) => {
         }, viewWrapper  )
     } finally{
         dispatchEvent('loader-view', { isLoading: false }, viewWrapper)
-        
     }
-
-    // chequear si e ususario esta loguado y es el propietario
-    // del  producto mostrado, muestra botones de edicion o eliminacion
 
     
     async function handlerToolbar(product, buildToolbar) {
@@ -59,7 +49,9 @@ export const viewController = async (viewWrapper, getSessionData) => {
         const confirmation = window.confirm(`¿Estas seguro que deseas eliminar este producto?`)
         if (!confirmation) return;
         try {
-           const data = await deleteProduct(productId, token)
+            dispatchEvent('loader-view', { isLoading: true }, viewWrapper)
+            const data = await deleteProduct(productId, token)
+            viewWrapper.innerHTML = ''
             dispatchEvent('notification-view', {
                 type: 'success',
                 message: `${data.message}`
@@ -67,16 +59,17 @@ export const viewController = async (viewWrapper, getSessionData) => {
 
             setTimeout( () => {
                 document.location.href = "index.html"
-            },3000)
+            },1000)
            
        }catch (error) {
            dispatchEvent('notification-view',{
                type:'error',
                message:`Error al intentar eliminar el producto: ${error} `  
            }, viewWrapper  )
+       } finally{
+            dispatchEvent('loader-view', { isLoading: false }, viewWrapper)
        }
     }
-    
     
     function renderActionView(buildToolbar) {
         const toolbar = viewWrapper.querySelector('.toolbar')

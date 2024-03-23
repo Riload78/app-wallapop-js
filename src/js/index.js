@@ -35,10 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
         handleUrlChange(event.detail.search, event.detail.category, event.detail.url)
     })
 
-    productListWrapper.addEventListener('products-number', (event) => {
-        console.log(event.detail.searchFilter, event.detail.categoryFilter);
-    })
-    
+
     searchWrapper.addEventListener('search-params', (event) => {
         handleUrlChange(event.detail.search, event.detail.category, event.detail.url)
         handlerProductNumber(event.detail.url)

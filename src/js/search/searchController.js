@@ -11,11 +11,11 @@ export const searchController = (searchWrapper) => {
     const categoriesLink = searchForm.querySelectorAll('#dropdown ul li')
     let clearButton
 
-    const createClearButton = () => {
+    const createClearButton = (filter) => {
         if (!clearButton) {
             const btnClear = document.createElement('div')
             btnClear.classList.add('btn', 'btn-primary', 'btn-clean')
-            btnClear.textContent = 'Eliminar filtros'
+            btnClear.textContent = `${filter}`
             searchWrapper.appendChild(btnClear)
             clearButton = btnClear
 
@@ -25,6 +25,14 @@ export const searchController = (searchWrapper) => {
                 searchWrapper.removeChild(clearButton)
                 clearButton = null
             })
+        } else {
+            clearButton = null
+            const btnTooRemove = searchWrapper.querySelector('.btn-clean')
+            btnTooRemove.remove()
+            //const btnToRemove =  clearButton.nextElementSibling || clearButton.previousElementSibling;
+            // searchForm.innerHTML=''
+            createClearButton(filter)
+           
         }
     }
 
@@ -36,7 +44,7 @@ export const searchController = (searchWrapper) => {
                 const newUrl = `?category_like=${category}`
                 dispatchEvent('search-params', { search: '', category: category, url: newUrl }, searchWrapper)
                 dropdownMenu.classList.add('hidden');
-                createClearButton()
+                createClearButton(category)
             })
         })
     }
@@ -56,7 +64,7 @@ export const searchController = (searchWrapper) => {
         console.log(search);
         const newUrl = `?name_like=${search}`;
         dispatchEvent('search-params', { search: search, category:'', url: newUrl }, searchWrapper)
-        createClearButton()
+        createClearButton(search)
     })
     
     

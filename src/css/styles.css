@@ -30,6 +30,18 @@ body .btn-primary{
 body .btn-secondary {
     @apply w-full px-8 py-3 font-semibold rounded-md bg-sky-400 text-gray-900 hover:bg-sky-600 transition ease-in-out;
 }
+body .btn-clean{
+    @apply flex justify-center items-center gap-2 text-sm px-4 py-1 bg-sky-100 border border-sky-600;
+}
+
+body .btn-clean:after{
+    content:'';
+    background-image: url(../images/delete.svg);
+    background-size: cover;
+    display: block;
+    width: 15px;
+    height: 15px;
+}
 .header-content {
     @apply bg-gradient-to-r from-cyan-500 to-gray-900 shadow-sm shadow-teal-600;
 }

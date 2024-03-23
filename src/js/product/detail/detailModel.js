@@ -27,16 +27,14 @@ export const deleteProduct = async (productId, token) => {
             }
         }
         const response = await fetch(url, options)
-        console.log(response);
+
         if(!response.ok){
             throw new Error(error)
         }
         const data = {
-            message:  "Successfully deleted product"
+            message:  "El producto se ha eliminado correctamente"
         }
         return data
-
-
         
     } catch (error) {
         console.log(error);
