@@ -27,7 +27,6 @@ export const paginationController = (paginationWrapper) => {
             handlerLinksPagination(search, category)
             
         } catch (error) {
-            console.log(error);
             throw new Error (error)
         }
     }

@@ -15,7 +15,7 @@ export const viewController = async (viewWrapper, getSessionData) => {
         viewContent.innerHTML = buildView(product)
         handlerToolbar(product, buildToolbar)       
     } catch (error) {
-        console.log(error)
+
         dispatchEvent('notification-view',{
             type:'error',
             message:`No se pudo cargar el producto: ${error}` 
@@ -26,7 +26,7 @@ export const viewController = async (viewWrapper, getSessionData) => {
 
     
     async function handlerToolbar(product, buildToolbar) {
-        // const token = localStorage.getItem('token')
+        
         const user = await getSessionData()
         const token = user.token
         if (user.id === product.userId) {
@@ -34,12 +34,10 @@ export const viewController = async (viewWrapper, getSessionData) => {
             const removeButton = viewWrapper.querySelector('#remove-button')
             const editButton = viewWrapper.querySelector('#edit-button')
             removeButton.addEventListener("click", ()=> {
-                console.log('btn-remove');
                 removeProduct(product.id, token)
             })
 
             editButton.addEventListener( "click" ,() =>{
-                //redirect to create producto form   with the data of this one
                 window.location.href= `/create.html?id=${product.id}`;
             })
         }

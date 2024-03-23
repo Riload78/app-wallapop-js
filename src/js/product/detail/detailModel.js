@@ -19,7 +19,6 @@ export const getProduct = async (productId) => {
 export const deleteProduct = async (productId, token) => {
     try {
         const url = `${ENV.apiProductBaseUrl}products/${productId}`
-        console.log(url);
         const options = {
             method: "DELETE",  
             headers:{
@@ -37,7 +36,6 @@ export const deleteProduct = async (productId, token) => {
         return data
         
     } catch (error) {
-        console.log(error);
         throw new Error(error)
     }
 }

@@ -61,13 +61,10 @@ export const searchController = (searchWrapper) => {
         event.preventDefault()
         const formSearch = new FormData(searchForm)
         const search = formSearch.get('search')
-        console.log(search);
         const newUrl = `?name_like=${search}`;
         dispatchEvent('search-params', { search: search, category:'', url: newUrl }, searchWrapper)
         createClearButton(search)
     })
-    
-    
     
     renderCategories()
 }

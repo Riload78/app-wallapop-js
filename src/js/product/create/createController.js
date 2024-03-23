@@ -3,7 +3,7 @@ import { createProduct, getProduct, updateProduct } from "./createModel.js";
 import { dispatchEvent } from "../../helper/dispatchEvent.js";
 
 export const createController = async (createForm, getSessionData) => {
-    console.log(createForm);
+
     const url = window.location.search
     const queryParams = new URLSearchParams(url);
     const productId = queryParams.get('id')
@@ -17,8 +17,8 @@ export const createController = async (createForm, getSessionData) => {
     })
 
     const getCreateData = async (createForm) => {
+
         const formdata = new FormData(createForm)
-        console.log(formdata);
         const name = formdata.get('name')
         const description = formdata.get('description')
         const price = formdata.get('price')
@@ -29,8 +29,10 @@ export const createController = async (createForm, getSessionData) => {
         try {
             imageData = await readFileAsDataURL(image);
         } catch (error) {
-            console.log(error);
-            throw new Error(error)
+            dispatchEvent('create-product-notification', {
+                type: 'error',
+                message: error
+            }, createForm)
         }
         return {
             name: name,
@@ -104,7 +106,6 @@ export const createController = async (createForm, getSessionData) => {
             }, 2000)
             
         } catch (error) {
-            console.log(error);
             dispatchEvent('create-product-notification', {
                 message: error,
                 type: 'error'

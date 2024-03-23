@@ -16,6 +16,6 @@ function getCurrencyCode(language){
 }
 
 /**
- * LLamar a una api para conversion de rate
+ * LLamar a una api para conversion de rate y mostrar el resultado en la vista -> Pendiente
  */
 

@@ -50,6 +50,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const { handleUrlChange } = productController(productListWrapper)
     searchController(searchWrapper)
     sessionController(sessionWapper)
-    currencyController(currencyWrapper)
+
+    /**
+     * Penging to develop de module
+     */
+    // currencyController(currencyWrapper)
     
 })

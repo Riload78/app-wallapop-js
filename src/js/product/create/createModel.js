@@ -19,7 +19,7 @@ export const createProduct = async (dataForm) => {
     }
     try {
         const response = await fetch(url, options)
-        if (!response.ok) throw new Error(`Error al crear el producto: ${response.status}`);
+        if (!response.ok) throw new Error(`Error al crear el producto: ${response.status}`)
         
     } catch (error) {
         throw new Error(error);
@@ -28,9 +28,9 @@ export const createProduct = async (dataForm) => {
 }
 
 export const getProduct = async (productId, token) => {
-    console.log('entro getProduct');
+    
     try {
-        const url = `${ENV.apiProductBaseUrl}products/${productId}`;
+        const url = `${ENV.apiProductBaseUrl}products/${productId}`
         const options = {
             headers: {
                 'Authorization': `Bearer ${token}` 
@@ -49,7 +49,7 @@ export const getProduct = async (productId, token) => {
 
 export const updateProduct = async (productId, token, dataForm) => {
     try {
-        const url = `${ENV.apiProductBaseUrl}products/${productId}`; 
+        const url = `${ENV.apiProductBaseUrl}products/${productId}`
 
         const body = {
             ...dataForm,
@@ -65,11 +65,10 @@ export const updateProduct = async (productId, token, dataForm) => {
             body: JSON.stringify(body)
         }
         const response = await fetch(url, options)
-        const data = await response.json();
-        console.log("resData", data);
-        return data;
+        const data = await response.json()
+        return data
+
     } catch (error) {
-        console.log(error)
         throw new Error(error)
     }
 }
