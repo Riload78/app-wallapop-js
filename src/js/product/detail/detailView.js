@@ -12,7 +12,6 @@ export const buildView = (product) => {
                     <div class="price">${product.price}</div>
                     <div class="tag">${product.category}</div>
                 </div>
-                <p class="text-gray-100 text-sm">Fecha de publicación:<time datetime="${product.updatedAt}">${product.updatedAt}</time></p>
             </div>
         </div>
     `
