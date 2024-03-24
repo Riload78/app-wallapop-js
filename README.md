@@ -11,6 +11,7 @@ Development of a web application similar to Wallapop using plain JavaScript and 
 ![Static Badge](https://img.shields.io/badge/TAILDWIND-EDCE72)
 ![Static Badge](https://img.shields.io/badge/JAVASCRIPT-F679FC)
 ![Static Badge](https://img.shields.io/badge/MVC-BD415B)
+![Static Badge](https://img.shields.io/badge/JWT-BD415B)
 
 ## Features:
 
@@ -35,7 +36,7 @@ Product visualization. Editing and deletion options for the owner of the ad.
 
 ### Create an ad
 
-Form for creating product ads.
+Form for creating product ads. Product images can be uploaded as they are encoded in base64 and saved in the database
 
 ### Login
 
@@ -54,22 +55,44 @@ Back-end: JWT, Sparrest
 
 ## Deployment
 
-Para desplegar este proyecto es necesario clonarse dos repositorio:
+To deploy this project it is necessary to clone two repositories:
   * Frontend App - [CodePop](https://github.com/Riload78/nodepop)
   * Api - [Sparrest](https://github.com/kasappeal/sparrest.js/tree/main)
 
+Steps to follow:
+1. Copy the db.json file located in the root of the Wallapop project to the root of the Sparrest project
+2. Initialize a development server for each of the projects (Wallapop and Sparrest).
+
+    Wallapop app
+    ```bash
+    npx live-server
+    ````
+   Sparrest server
+    ```bash
+    npm install
+
+    npm run start
+    ```
+
+Testing
+
+Register two users. Each user created will have an associated series of Products established in the provided db.json. For example, user 1 will have the products associated with id 1, 2, 3. And user 2 will have the products associated with id 4, 5, 6.
+
 ### FRONTEND
 
-Para instalar las dependencias de Taildwind
+To install Taildwind dependencies
 
 ```bash
 npm install
 ```
 
-Para modificar los css ejecutar
+To modify the CSS execute
 ```bash
-  npm run taildwind
+npm run taildwind
 ```
+
+
+
 
 ## API Reference
 

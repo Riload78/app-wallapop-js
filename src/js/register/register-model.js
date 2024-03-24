@@ -17,7 +17,7 @@ export async function createUser (email, password) {
         }
         
     } catch (error) {
-        throw new Error('Servicio no disponible en este momento. Inténtelo más tarde')
+        throw new Error(`Se ha producido un error. ${error}`)
     }
 
 }
