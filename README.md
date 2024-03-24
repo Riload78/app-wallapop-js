@@ -28,6 +28,7 @@ Features:
 * Category filtering: Allows filtering of ads by predefined categories.
 * Live update: Search and filter results are updated without the need to reload the page.
 * Price formatting: Prices are displayed in the currency corresponding to the browser language.
+* Image upload, base-64 encoding and database storage
 
 Pending: Currency conversion using an external API.
 
