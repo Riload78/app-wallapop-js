@@ -8,24 +8,39 @@ export const viewController = async (viewWrapper, getSessionData) => {
     const queryParams = new URLSearchParams(url);
     const productId = queryParams.get('id')
 
-    try {
-        dispatchEvent('loader-view', { isLoading: true }, viewWrapper)
-        const product = await getProduct(productId)
-        const viewContent = viewWrapper.querySelector('.view-content')
-        viewContent.innerHTML = buildView(product)
-        handlerToolbar(product, buildToolbar)       
-    } catch (error) {
+    const removeProduct = async (productId, token) => {
+        const confirmation = window.confirm(`¿Estas seguro que deseas eliminar este producto?`)
+        if (!confirmation) return;
+        try {
+            dispatchEvent('loader-view', { isLoading: true }, viewWrapper)
+            const data = await deleteProduct(productId, token)
+            viewWrapper.innerHTML = ''
+            dispatchEvent('notification-view', {
+                type: 'success',
+                message: `${data.message}`
+            }, viewWrapper)
 
-        dispatchEvent('notification-view',{
-            type:'error',
-            message:`No se pudo cargar el producto: ${error}` 
-        }, viewWrapper  )
-    } finally{
-        dispatchEvent('loader-view', { isLoading: false }, viewWrapper)
+            setTimeout(() => {
+                document.location.href = "index.html"
+            }, 1000)
+
+        } catch (error) {
+            dispatchEvent('notification-view', {
+                type: 'error',
+                message: `Error al intentar eliminar el producto: ${error} `
+            }, viewWrapper)
+        } finally {
+            dispatchEvent('loader-view', { isLoading: false }, viewWrapper)
+        }
+    }  
+
+    const renderActionView = (buildToolbar) => {
+        const toolbar = viewWrapper.querySelector('.toolbar')
+        toolbar.innerHTML = buildToolbar()
+        toolbar.classList.remove('hidden')
     }
 
-    
-    async function handlerToolbar(product, buildToolbar) {
+    const handlerToolbar = async (product, buildToolbar) => {
         
         const user = await getSessionData()
         const token = user.token
@@ -43,35 +58,28 @@ export const viewController = async (viewWrapper, getSessionData) => {
         }
     }
 
-    async function removeProduct (productId, token){
-        const confirmation = window.confirm(`¿Estas seguro que deseas eliminar este producto?`)
-        if (!confirmation) return;
-        try {
-            dispatchEvent('loader-view', { isLoading: true }, viewWrapper)
-            const data = await deleteProduct(productId, token)
-            viewWrapper.innerHTML = ''
-            dispatchEvent('notification-view', {
-                type: 'success',
-                message: `${data.message}`
-            }, viewWrapper)
+    const goBack = (viewWrapper) => {
+        const backButton = viewWrapper.querySelector('#goBack')
+        backButton.addEventListener('click', () => { window.history.back() })
+    }
 
-            setTimeout( () => {
-                document.location.href = "index.html"
-            },1000)
-           
-       }catch (error) {
-           dispatchEvent('notification-view',{
-               type:'error',
-               message:`Error al intentar eliminar el producto: ${error} `  
-           }, viewWrapper  )
-       } finally{
-            dispatchEvent('loader-view', { isLoading: false }, viewWrapper)
-       }
+    goBack(viewWrapper)
+
+    try {
+        dispatchEvent('loader-view', { isLoading: true }, viewWrapper)
+        const product = await getProduct(productId)
+        const viewContent = viewWrapper.querySelector('.view-content')
+        viewContent.innerHTML = buildView(product)
+        handlerToolbar(product, buildToolbar)
+    } catch (error) {
+
+        dispatchEvent('notification-view', {
+            type: 'error',
+            message: `No se pudo cargar el producto: ${error}`
+        }, viewWrapper)
+    } finally {
+        dispatchEvent('loader-view', { isLoading: false }, viewWrapper)
     }
+
     
-    function renderActionView(buildToolbar) {
-        const toolbar = viewWrapper.querySelector('.toolbar')
-        toolbar.innerHTML = buildToolbar()
-        toolbar.classList.remove('hidden')
-    }
 } 
